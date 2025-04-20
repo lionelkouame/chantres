@@ -1,0 +1,28 @@
+# Répertoires et fichiers générés par l'IDE
+.idea/
+.vscode/
+
+# Répertoires et fichiers générés par Composer
+/vendor/
+
+# Répertoires de cache et de logs
+/var/
+/var/cache/
+/var/log/
+/var/sessions/
+
+# Fichiers d'environnement
+.env
+.env.local
+.env.*.local
+
+# Répertoires de build
+/public/build/
+/node_modules/
+
+# Fichiers de test
+/phpunit.xml
+/phpunit.xml.dist
+
+# Autres fichiers spécifiques
+/public/uploads/
