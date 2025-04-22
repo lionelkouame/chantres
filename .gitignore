@@ -12,7 +12,6 @@
 /var/sessions/
 
 # Fichiers d'environnement
-.env
 .env.local
 .env.*.local
 
