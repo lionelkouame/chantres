@@ -1,6 +1,7 @@
 # Chantres
 
 ![Chantres CI](https://github.com/lionelkouame/chantres/actions/workflows/ci.yml/badge.svg)
+![Rector](https://github.com/lionelkouame/chantres/actions/workflows/ci.yml/badge.svg?branch=main&label=rector)
 
 
 
