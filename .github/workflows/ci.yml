@@ -113,3 +113,19 @@ jobs:
         name: Run PHP STAN
         run: vendor/bin/phpstan analyse --no-progress
       
+  rector:
+    name: Rector process
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3.19'
+          tools: composer
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: composer install
+        run: composer install --no-interaction --prefer-dist
+      - name: Run rector in dry run mod
+        run: vendor/bin/rector process --dry-run
+
