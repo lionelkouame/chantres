@@ -1,42 +1,28 @@
-# challenger-open-source
+# Chantres
 
 ![Chantres CI](https://github.com/lionelkouame/challenger-open-source/actions/workflows/ci.yml/badge.svg)
 
 
-Challenger Open Source  is a quiz application built in Ruby,
+Chantres is a application about to manage choir members and their songs.,
 following Domain-Driven Design (DDD),
 Command Query Responsibility Segregation (CQRS),
-and Event Sourcing principles.
+
 This project is designed to be extensible and open for community contributions.
 
 ## 🚀 Features
-- Create and manage quizzes
-- Handle user responses
-- Score calculation engine
+- Members management
+- Songs management
+- Events management
 
 # 🛠️ Getting Started
 
 ### Prerequisites
-- Ruby 3.4+
-- Bundler
+- Docker
 
 ### Installation
-```bash
-git clone git@github.com:lionelkouame/challenger-open-source.git
-cd challenger-open-source
-bundle install
-```
+base on Fork symfony-docker read the documentation
+[Symfony-docker](docs/symfony-docker.md)
 
-
-### Running the App
-```bash
-rake run
-```
-
-## 🧪 Running Tests
-```bash
-rake test
-```
 
 ## 🤝 Contributing
 We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
