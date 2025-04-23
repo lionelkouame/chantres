@@ -4,11 +4,8 @@ namespace App\TestCi;
 
 class WantToTestPhpUnit
 {
-
-    public function indexToTestBool() : bool
+    public function indexToTestBool(): bool
     {
-
         return true;
     }
-
 }

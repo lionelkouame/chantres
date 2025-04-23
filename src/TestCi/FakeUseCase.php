@@ -4,5 +4,4 @@ namespace App\TestCi;
 
 class FakeUseCase
 {
-
 }

@@ -78,3 +78,17 @@ jobs:
       -
         name: Lint Dockerfile
         uses: hadolint/hadolint-action@v3.1.0
+
+  cs-fixer:
+    name: PHP CS Fixer
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+      -
+        name: Install PHP CS Fixer
+        run: composer global require friendsofphp/php-cs-fixer
+      -
+        name: Run PHP CS Fixer
+        run: ~/.composer/vendor/bin/php-cs-fixer fix --dry-run --diff --verbose

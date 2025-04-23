@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Tests\TestCi;
 
-use PHPUnit\Framework\TestCase;
 use App\TestCi\WantToTestPhpUnit;
+use PHPUnit\Framework\TestCase;
 
 class WantToTestPhpUnitTest extends TestCase
 {
