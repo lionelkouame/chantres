@@ -1,6 +1,7 @@
 # Répertoires et fichiers générés par l'IDE
 .idea/
 .vscode/
+prompts/
 
 # Répertoires et fichiers générés par Composer
 /vendor/
