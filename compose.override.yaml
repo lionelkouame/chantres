@@ -1,7 +1,12 @@
 # Development environment override
 services:
   php:
-    build:
+    healthcheck:
+      test: [ "CMD", "php", "-v" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    build:      
       context: .
       target: frankenphp_dev
     volumes:
@@ -23,4 +28,4 @@ services:
     tty: true
 
 ###> symfony/mercure-bundle ###
-###< symfony/mercure-bundle ###
+###< symfony/mercure-

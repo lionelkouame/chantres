@@ -1,0 +1,55 @@
+# Répertoires et fichiers générés par l'IDE
+.idea/
+.vscode/
+
+# Répertoires et fichiers générés par Composer
+/vendor/
+
+# Répertoires de cache et de logs
+/var/
+/var/cache/
+/var/log/
+/var/sessions/
+
+# Fichiers d'environnement
+.env.local
+.env.*.local
+
+# Répertoires de build
+/public/build/
+/node_modules/
+
+# Fichiers de test
+/phpunit.xml
+
+# Autres fichiers spécifiques
+/public/uploads/
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+###> friendsofphp/php-cs-fixer ###
+/.php-cs-fixer.php
+/.php-cs-fixer.cache
+###< friendsofphp/php-cs-fixer ###
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###
