@@ -6,5 +6,10 @@ phpstan:
 	vendor/bin/phpstan analyse
 phpunit:
 		vendor/bin/phpunit
+rector:
+	vendor/bin/rector process
+rector:
+	vendor/bin/rector process --dry-run
+
 
 audi: cs-fix phpstan phpunit
