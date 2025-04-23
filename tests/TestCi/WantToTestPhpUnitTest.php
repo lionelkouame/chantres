@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class WantToTestPhpUnitTest extends TestCase
 {
-    public function testIndexToTestBool()
+    public function testIndexToTestBool() : void
     {
         $instance = new WantToTestPhpUnit();
         $result = $instance->indexToTestBool();

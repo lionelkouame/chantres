@@ -92,3 +92,24 @@ jobs:
       -
         name: Run PHP CS Fixer
         run: ~/.composer/vendor/bin/php-cs-fixer fix --dry-run --diff --verbose
+  
+  php-stan:
+    name: PHP Stan analyse
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3.19'
+          tools: composer
+      -  
+        name: Checkout
+        uses: actions/checkout@v4
+      -  
+        name: composer install
+        run:  composer install --no-interaction --prefer-dist
+      -
+        name: Run PHP STAN
+        run: vendor/bin/phpstan analyse --no-progress
+      
