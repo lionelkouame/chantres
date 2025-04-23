@@ -1,6 +1,7 @@
 # Chantres
 
-![Chantres CI](https://github.com/lionelkouame/challenger-open-source/actions/workflows/ci.yml/badge.svg)
+![Chantres CI](https://github.com/lionelkouame/chantres/actions/workflows/ci.yml/badge.svg)
+
 
 
 Chantres is a application about to manage choir members and their songs.,
