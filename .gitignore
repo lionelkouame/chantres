@@ -21,7 +21,6 @@
 
 # Fichiers de test
 /phpunit.xml
-/phpunit.xml.dist
 
 # Autres fichiers spécifiques
 /public/uploads/
