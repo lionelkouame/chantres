@@ -12,4 +12,4 @@ rector:
 	vendor/bin/rector process --dry-run
 
 
-audit: cs-fix phpstan phpunit
+audit: cs-fix phpstan phpunit rector

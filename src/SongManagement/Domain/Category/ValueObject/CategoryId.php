@@ -15,7 +15,7 @@ class CategoryId
         try {
             $this->uuid = Uuid::fromString($uuid);
         } catch (\InvalidArgumentException $exception) {
-            throw new \InvalidArgumentException("Invalid UUID: $uuid $exception");
+            throw new \InvalidArgumentException("Invalid UUID: $uuid $exception", $exception->getCode(), $exception);
         }
     }
 
