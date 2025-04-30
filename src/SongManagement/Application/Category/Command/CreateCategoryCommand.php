@@ -7,8 +7,8 @@ namespace App\SongManagement\Application\Category\Command;
 final readonly class CreateCategoryCommand
 {
     public function __construct(
-        public string $name,
         public string $id,
+        public string $name,
     ) {
     }
 }
