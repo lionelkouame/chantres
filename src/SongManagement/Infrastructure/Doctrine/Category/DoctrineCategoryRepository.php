@@ -5,14 +5,13 @@ namespace App\SongManagement\Infrastructure\Doctrine\Category;
 use App\SongManagement\Domain\Category\Category;
 use App\SongManagement\Domain\Category\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use App\SongManagement\Infrastructure\Doctrine\Category\CategoryEntity;
 
 class DoctrineCategoryRepository implements CategoryRepository
 {
     public function __construct(
-        private  EntityManagerInterface $entityManager
-    )
-    {}
+        private EntityManagerInterface $entityManager,
+    ) {
+    }
 
     public function save(Category $category): void
     {
@@ -32,5 +31,4 @@ class DoctrineCategoryRepository implements CategoryRepository
 
         return CategoryMapper::entityToDomain($entity);
     }
-
 }

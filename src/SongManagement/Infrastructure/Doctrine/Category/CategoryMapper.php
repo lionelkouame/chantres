@@ -10,19 +10,17 @@ final class CategoryMapper
 {
     public static function domainToEntity(Category $category): CategoryEntity
     {
-
         return new CategoryEntity(
             $category->getId(),
             $category->getName(),
         );
     }
 
-    public static  function entityToDomain(CategoryEntity $categoryEntity): Category
+    public static function entityToDomain(CategoryEntity $categoryEntity): Category
     {
         $id = new CategoryId($categoryEntity->getId());
         $name = new CategoryName($categoryEntity->getName());
 
         return new Category($id, $name);
     }
-
 }

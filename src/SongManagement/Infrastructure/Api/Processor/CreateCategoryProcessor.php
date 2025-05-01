@@ -14,20 +14,20 @@ use Symfony\Component\Uid\Uuid;
 readonly class CreateCategoryProcessor implements ProcessorInterface
 {
     public function __construct(private MessageBusInterface $messageBus)
-    {}
+    {
+    }
 
     /**
      * @param CreateCategoryInput $data
+     *
      * @throws ExceptionInterface
      */
-    public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []) : void
+    public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): void
     {
         $categoryId = CategoryId::generate();
-         $id = Uuid::fromString($categoryId->getValue());
+        $id = Uuid::fromString($categoryId->getValue());
         $this->messageBus->dispatch(
             new CreateCategoryCommand($id->toString(), $data->name)
         );
-
     }
-
 }

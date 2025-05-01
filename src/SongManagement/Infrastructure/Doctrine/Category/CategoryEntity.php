@@ -12,7 +12,7 @@ class CategoryEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: 'string', length: 36)]
-    private string  $id;
+    private string $id;
 
     #[ORM\Column(type: 'string', length: 255)]
     private string $name;
@@ -32,5 +32,4 @@ class CategoryEntity
     {
         return $this->name;
     }
-
 }
