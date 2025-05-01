@@ -14,6 +14,7 @@ class CategoryEntity
     #[ORM\Column(type: 'string', length: 36)]
     private string  $id;
 
+    #[ORM\Column(type: 'string', length: 255)]
     private string $name;
 
     public function __construct(string $id, string $name)

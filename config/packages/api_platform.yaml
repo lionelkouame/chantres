@@ -1,6 +1,6 @@
 api_platform:
-    title: Hello API Platform
-    version: 1.0.0
+    title: Chantres Rest API
+    version: 0.0.1
     defaults:
         stateless: true
         cache_headers:
