@@ -11,6 +11,9 @@ use Symfony\Component\Messenger\Exception\ExceptionInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Uid\Uuid;
 
+/**
+ * @implements ProcessorInterface<CreateCategoryInput, void>
+ */
 readonly class CreateCategoryProcessor implements ProcessorInterface
 {
     public function __construct(private MessageBusInterface $messageBus)

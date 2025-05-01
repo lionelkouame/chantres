@@ -25,7 +25,7 @@ class DoctrineCategoryRepository implements CategoryRepository
     {
         $entity = $this->entityManager->find(CategoryEntity::class, $id);
 
-        if (!$entity) {
+        if ($entity === null) {
             return null;
         }
 

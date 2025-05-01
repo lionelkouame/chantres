@@ -6,7 +6,7 @@ namespace App\SongManagement\Infrastructure\Doctrine\Category;
 
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: DoctrineCategoryRepository::class)]
+#[ORM\Entity()]
 #[ORM\Table(name: 'category')]
 class CategoryEntity
 {

@@ -8,7 +8,7 @@ phpunit:
 		vendor/bin/phpunit
 rector:
 	vendor/bin/rector process
-rector:
+rector-dry:
 	vendor/bin/rector process --dry-run
 
 
