@@ -22,8 +22,8 @@ final class CategoryMapper
     {
         $id = new CategoryId($categoryEntity->getId());
         $name = new CategoryName($categoryEntity->getName());
-        $createdAt = $categoryEntity->getCreatedAt();
+        $createdAt = CreatedAtMapper::toValueObject($categoryEntity->getCreatedAt());
 
-        return  Category::create($id, $name, $createdAt);
+        return Category::create($id, $name, $createdAt);
     }
 }

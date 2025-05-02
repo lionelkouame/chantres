@@ -2,27 +2,24 @@
 
 namespace App\Shared\Domain\ValueObject;
 
-use DateTimeImmutable;
-use InvalidArgumentException;
-
 final class CreatedAt
 {
-    private DateTimeImmutable $value;
+    private \DateTimeImmutable $value;
 
-    public function __construct(DateTimeImmutable $value)
+    public function __construct(\DateTimeImmutable $value)
     {
-        if ($value > new DateTimeImmutable()) {
-            throw new InvalidArgumentException('CreatedAt cannot be in the future.');
+        if ($value > new \DateTimeImmutable()) {
+            throw new \InvalidArgumentException('CreatedAt cannot be in the future.');
         }
         $this->value = $value;
     }
 
     public static function now(): self
     {
-        return new self(new DateTimeImmutable());
+        return new self(new \DateTimeImmutable());
     }
 
-    public function getValue(): DateTimeImmutable
+    public function getValue(): \DateTimeImmutable
     {
         return $this->value;
     }

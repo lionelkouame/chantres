@@ -20,16 +20,16 @@ final class Category
     public function __construct(
         private readonly CategoryId $id,
         private readonly CategoryName $name,
-        private ?CreatedAt $createdAt = null
+        private ?CreatedAt $createdAt = null,
     ) {
     }
 
-    public static function create(CategoryId $id, CategoryName $name, CreatedAt $createdAt = null): self
+    public static function create(CategoryId $id, CategoryName $name, ?CreatedAt $createdAt = null): self
     {
         $category = new self($id, $name);
         $category->createdAt = $createdAt ?? CreatedAt::now();
 
-        $category->recordEvent(new CategoryCreated($id, $name,$createdAt));
+        $category->recordEvent(new CategoryCreated($id, $name, $createdAt));
 
         return $category;
     }
@@ -56,6 +56,7 @@ final class Category
     {
         return $this->name;
     }
+
     public function getCreatedAt(): ?CreatedAt
     {
         return $this->createdAt;
