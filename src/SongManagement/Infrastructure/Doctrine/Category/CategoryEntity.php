@@ -25,7 +25,7 @@ class CategoryEntity
     #[ORM\Embedded(class: UpdatedAtEmbeddable::class, columnPrefix: false)]
     private UpdatedAtEmbeddable $updatedAt;
 
-    public function __construct(string $id, string $name, CreatedAtEmbeddable $createdAt, UpdatedAtEmbeddable $updatedAt )
+    public function __construct(string $id, string $name, CreatedAtEmbeddable $createdAt, UpdatedAtEmbeddable $updatedAt)
     {
         $this->id = $id;
         $this->name = $name;

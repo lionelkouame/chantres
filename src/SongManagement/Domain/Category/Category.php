@@ -26,7 +26,7 @@ final class Category
     ) {
     }
 
-    public static function create(CategoryId $id, CategoryName $name, ?CreatedAt $createdAt = null, ?UpdatedAt $updatedAt = null): self
+    public static function create(CategoryId $id, CategoryName $name, ?CreatedAt $createdAt = null): self
     {
         $category = new self($id, $name);
         $category->createdAt = $createdAt ?? CreatedAt::now();

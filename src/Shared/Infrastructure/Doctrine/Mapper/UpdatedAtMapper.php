@@ -16,5 +16,4 @@ class UpdatedAtMapper
     {
         return new UpdatedAtEmbeddable($vo->getValue());
     }
-
 }
