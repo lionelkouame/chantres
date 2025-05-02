@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\SongManagement\Domain\Category;
 
 use App\Shared\Domain\ValueObject\CreatedAt;
+use App\Shared\Domain\ValueObject\UpdatedAt;
 use App\SongManagement\Domain\Category\Event\CategoryCreated;
 use App\SongManagement\Domain\Category\Event\CategoryEventInterface;
 use App\SongManagement\Domain\Category\ValueObject\CategoryId;
@@ -21,13 +22,15 @@ final class Category
         private readonly CategoryId $id,
         private readonly CategoryName $name,
         private ?CreatedAt $createdAt = null,
+        private ?UpdatedAt $updatedAt = null,
     ) {
     }
 
-    public static function create(CategoryId $id, CategoryName $name, ?CreatedAt $createdAt = null): self
+    public static function create(CategoryId $id, CategoryName $name, ?CreatedAt $createdAt = null, ?UpdatedAt $updatedAt = null): self
     {
         $category = new self($id, $name);
         $category->createdAt = $createdAt ?? CreatedAt::now();
+        $category->updatedAt = UpdatedAt::now();
 
         $category->recordEvent(new CategoryCreated($id, $name, $createdAt));
 
@@ -60,5 +63,10 @@ final class Category
     public function getCreatedAt(): ?CreatedAt
     {
         return $this->createdAt;
+    }
+
+    public function getUpdatedAt(): ?UpdatedAt
+    {
+        return $this->updatedAt;
     }
 }
