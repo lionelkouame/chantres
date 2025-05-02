@@ -69,4 +69,8 @@ final class Category
     {
         return $this->updatedAt;
     }
+    public function setUpdatedAt(UpdatedAt $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
+    }
 }

@@ -27,6 +27,9 @@ final class CategoryMapper
         $createdAt = CreatedAtMapper::toValueObject($categoryEntity->getCreatedAt());
         $updatedAt = UpdatedAtMapper::toValueObject($categoryEntity->getUpdatedAt());
 
-        return Category::create($id, $name, $createdAt, $updatedAt);
+        $category = Category::create($id, $name, $createdAt);
+        $category->setUpdatedAt($updatedAt);
+
+        return $category;
     }
 }
