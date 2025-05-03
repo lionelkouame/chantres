@@ -55,6 +55,20 @@ services:
       # - ./docker/db/data:/var/lib/postgresql/data:rw
 ###< doctrine/doctrine-bundle ###
 
+###< rabbit-mq ###
+  rabbitmq:
+      image: rabbitmq:3-management
+      restart: unless-stopped
+      ports:
+          - "5672:5672"   # Port AMQP
+          - "15672:15672" # Interface Web
+      environment:
+          RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-guest}
+          RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-guest}
+      volumes:
+          - rabbitmq_data:/var/lib/rabbitmq
+###< rabbit-mq ###
+
 volumes:
   caddy_data:
   caddy_config:
@@ -63,4 +77,4 @@ volumes:
 
 ###> doctrine/doctrine-bundle ###
   database_data:
-###< doctrine/doctrine-bundle ###
+  rabbitmq_data:

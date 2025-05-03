@@ -9,12 +9,21 @@ framework:
         # failure_transport: failed
 
         transports:
+            song_management:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    exchange:
+                        name: 'song_management'
+                        type: direct
+                    queues:
+                        song_management: ~
             # https://symfony.com/doc/current/messenger.html#transport-configuration
             # async: '%env(MESSENGER_TRANSPORT_DSN)%'
             # failed: 'doctrine://default?queue_name=failed'
             # sync: 'sync://'
 
         routing:
+            'App\SongManagement\Application\Category\Command\CreateCategoryCommand': song_management
             # Route your messages to the transports
             # 'App\Message\YourMessage': async
 

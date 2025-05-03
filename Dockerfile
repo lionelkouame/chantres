@@ -51,10 +51,19 @@ COPY --link frankenphp/conf.d/10-app.ini $PHP_INI_DIR/app.conf.d/
 COPY --link --chmod=755 frankenphp/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
 COPY --link frankenphp/Caddyfile /etc/caddy/Caddyfile
 
+# for messenegr
+# pour AMQP
+RUN apt-get update && apt-get install -y \
+    librabbitmq-dev \
+    libssh-dev \
+    && pecl install amqp \
+    && docker-php-ext-enable amqp
+
 ENTRYPOINT ["docker-entrypoint"]
 
 HEALTHCHECK --start-period=60s CMD curl -f http://localhost:2019/metrics || exit 1
 CMD [ "frankenphp", "run", "--config", "/etc/caddy/Caddyfile" ]
+
 
 # Dev FrankenPHP image
 FROM frankenphp_base AS frankenphp_dev
@@ -98,4 +107,8 @@ RUN set -eux; \
 	composer dump-env prod; \
 	composer run-script --no-dev post-install-cmd; \
 	chmod +x bin/console; sync;
+
+
+
+
 

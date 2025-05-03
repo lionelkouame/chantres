@@ -26,5 +26,6 @@ class CreateCategoryHandler
         $category = Category::create($id, $name);
 
         $this->repository->save($category);
+
     }
 }
