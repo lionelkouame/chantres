@@ -13,7 +13,7 @@ final readonly class CategoryCreated implements CategoryEventInterface
         public CategoryId $id,
         public CategoryName $name,
         public ?CreatedAt $createdAt = null,
-        public ?UpdatedAt $updatedAt = null
+        public ?UpdatedAt $updatedAt = null,
     ) {
     }
 }
