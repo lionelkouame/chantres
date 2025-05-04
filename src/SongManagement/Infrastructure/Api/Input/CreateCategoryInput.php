@@ -7,6 +7,7 @@ namespace App\SongManagement\Infrastructure\Api\Input;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Post;
 use App\SongManagement\Infrastructure\Api\Processor\CreateCategoryProcessor;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiResource(
@@ -14,7 +15,9 @@ use Symfony\Component\Validator\Constraints as Assert;
     operations: [
         new Post(
             uriTemplate: 'categories',
-            processor: CreateCategoryProcessor::class,
+            status: Response::HTTP_CREATED,
+            output: false,
+            processor: CreateCategoryProcessor::class
         ),
     ],
     routePrefix: 'song/'
