@@ -40,20 +40,19 @@ jobs:
             *.cache-from=type=gha,scope=${{github.ref}}
             *.cache-from=type=gha,scope=refs/heads/main
             *.cache-to=type=gha,scope=${{github.ref}},mode=max
-      -  
-        name: Show PHP container logs
-        run: docker compose logs 
-
       -
         name: Logs
         run: docker compose ps
       -
         name: Start services
         run: docker compose up --wait --no-build
-      
+        continue-on-error: true
+      -  
+        name: Afficher un docker PS
+        run: docker compose ps
       -  
         name: Afficher les logs du conteneur PHP
-        run: docker compose logs php
+        run: docker compose logs  | grep php || true  
       -
         name: Check HTTP reachability
         run: curl -v --fail-with-body http://localhost
