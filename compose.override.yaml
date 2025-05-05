@@ -6,6 +6,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
+      start_period: 30s
     build:      
       context: .
       target: frankenphp_dev
