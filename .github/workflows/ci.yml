@@ -78,6 +78,7 @@ jobs:
       -
         name: Lint Dockerfile
         uses: hadolint/hadolint-action@v3.1.0
+    needs: [tests, cs-fixer, php-stan, rector]
 
   cs-fixer:
     name: PHP CS Fixer
