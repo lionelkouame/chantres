@@ -53,6 +53,7 @@ COPY --link frankenphp/Caddyfile /etc/caddy/Caddyfile
 
 # for messenegr
 # pour AMQP
+# hadolint ignore=DL3008
 RUN apt-get update && apt-get install -y --no-install-recommends \
     librabbitmq-dev \
     libssh-dev \
