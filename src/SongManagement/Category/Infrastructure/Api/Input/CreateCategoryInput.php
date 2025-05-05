@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\SongManagement\Infrastructure\Api\Input;
+namespace App\SongManagement\Category\Infrastructure\Api\Input;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Post;
-use App\SongManagement\Infrastructure\Api\Processor\CreateCategoryProcessor;
+use App\SongManagement\Category\Infrastructure\Api\Processor\CreateCategoryProcessor;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints as Assert;
 

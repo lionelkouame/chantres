@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\SongManagement\Application\Category\Command;
+namespace App\SongManagement\Category\Application\Command;
 
 final readonly class CreateCategoryCommand
 {

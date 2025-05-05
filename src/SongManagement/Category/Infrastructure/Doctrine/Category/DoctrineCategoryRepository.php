@@ -1,6 +1,6 @@
 <?php
 
-namespace App\SongManagement\Infrastructure\Doctrine\Category;
+namespace App\SongManagement\Category\Infrastructure\Doctrine\Category;
 
 use App\SongManagement\Category\Domain\Category;
 use App\SongManagement\Category\Domain\Repository\CategoryRepository;

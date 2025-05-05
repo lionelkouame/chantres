@@ -1,12 +1,12 @@
 <?php
 
-namespace App\SongManagement\Infrastructure\Api\Processor;
+namespace App\SongManagement\Category\Infrastructure\Api\Processor;
 
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
-use App\SongManagement\Application\Category\Command\CreateCategoryCommand;
+use App\SongManagement\Category\Application\Command\CreateCategoryCommand;
 use App\SongManagement\Category\Domain\ValueObject\CategoryId;
-use App\SongManagement\Infrastructure\Api\Input\CreateCategoryInput;
+use App\SongManagement\Category\Infrastructure\Api\Input\CreateCategoryInput;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Messenger\Exception\ExceptionInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
@@ -20,8 +20,8 @@ readonly class CreateCategoryProcessor implements ProcessorInterface
     public function __construct(
         private MessageBusInterface $messageBus,
         private RequestStack $requestStack,
-    )
-    {}
+    ) {
+    }
 
     /**
      * @param CreateCategoryInput $data
@@ -39,6 +39,6 @@ readonly class CreateCategoryProcessor implements ProcessorInterface
 
         $request = $this->requestStack->getCurrentRequest();
 
-        $request->headers->set('X-Resource-ID',$id);
+        $request->headers->set('X-Resource-ID', $id);
     }
 }

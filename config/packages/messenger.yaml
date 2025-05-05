@@ -23,7 +23,7 @@ framework:
             # sync: 'sync://'
 
         routing:
-            'App\SongManagement\Application\Category\Command\CreateCategoryCommand': song_management
+            'App\SongManagement\Category\Application\Command\CreateCategoryCommand': song_management
             # Route your messages to the transports
             # 'App\Message\YourMessage': async
 

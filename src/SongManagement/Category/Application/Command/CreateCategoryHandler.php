@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\SongManagement\Application\Category\Command;
+namespace App\SongManagement\Category\Application\Command;
 
 use App\SongManagement\Category\Domain\Category;
 use App\SongManagement\Category\Domain\Repository\CategoryRepository;

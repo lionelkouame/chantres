@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\SongManagement\Application\Command;
 
-use App\SongManagement\Application\Category\Command\CreateCategoryCommand;
-use App\SongManagement\Application\Category\Command\CreateCategoryHandler;
+use App\SongManagement\Category\Application\Command\CreateCategoryCommand;
+use App\SongManagement\Category\Application\Command\CreateCategoryHandler;
 use App\SongManagement\Category\Domain\Category;
 use App\SongManagement\Category\Domain\Repository\CategoryRepository;
 use PHPUnit\Framework\TestCase;

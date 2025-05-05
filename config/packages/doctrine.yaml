@@ -18,17 +18,11 @@ doctrine:
             Doctrine\DBAL\Platforms\PostgreSQLPlatform: identity
         auto_mapping: true
         mappings:
-            App:
-                type: attribute
-                is_bundle: false
-                dir: '%kernel.project_dir%/src/Entity'
-                prefix: 'App\Entity'
-                alias: App
             SongManagementCategory:
                 type: attribute
                 is_bundle: false
-                dir:  '%kernel.project_dir%/src/SongManagement/Infrastructure/Doctrine/Category'
-                prefix: 'App\SongManagement\Infrastructure\Doctrine\Category'
+                dir:  '%kernel.project_dir%/src/SongManagement/Category/Infrastructure/Doctrine/Category'
+                prefix: 'App\SongManagement\Category\Infrastructure\Doctrine\Category'
                 alias: SongManagementCategory
             SharedFields:
                 type: attribute

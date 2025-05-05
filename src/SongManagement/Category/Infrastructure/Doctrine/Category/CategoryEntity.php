@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\SongManagement\Infrastructure\Doctrine\Category;
+namespace App\SongManagement\Category\Infrastructure\Doctrine\Category;
 
 use App\Shared\Infrastructure\Doctrine\Embeddable\CreatedAtEmbeddable;
 use App\Shared\Infrastructure\Doctrine\Embeddable\UpdatedAtEmbeddable;

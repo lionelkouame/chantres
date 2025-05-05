@@ -1,6 +1,6 @@
 <?php
 
-namespace App\SongManagement\Infrastructure\Doctrine\Category;
+namespace App\SongManagement\Category\Infrastructure\Doctrine\Category;
 
 use App\Shared\Infrastructure\Doctrine\Mapper\CreatedAtMapper;
 use App\Shared\Infrastructure\Doctrine\Mapper\UpdatedAtMapper;
