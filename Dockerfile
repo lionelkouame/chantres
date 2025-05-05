@@ -53,11 +53,12 @@ COPY --link frankenphp/Caddyfile /etc/caddy/Caddyfile
 
 # for messenegr
 # pour AMQP
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     librabbitmq-dev \
     libssh-dev \
     && pecl install amqp \
-    && docker-php-ext-enable amqp
+    && docker-php-ext-enable amqp \
+    && rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["docker-entrypoint"]
 
