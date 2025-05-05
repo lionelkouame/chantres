@@ -6,8 +6,8 @@ namespace App\Tests\SongManagement\Application\Command;
 
 use App\SongManagement\Application\Category\Command\CreateCategoryCommand;
 use App\SongManagement\Application\Category\Command\CreateCategoryHandler;
-use App\SongManagement\Domain\Category\Category;
-use App\SongManagement\Domain\Category\Repository\CategoryRepository;
+use App\SongManagement\Category\Domain\Category;
+use App\SongManagement\Category\Domain\Repository\CategoryRepository;
 use PHPUnit\Framework\TestCase;
 
 class CreateCategoryHandlerTest extends TestCase

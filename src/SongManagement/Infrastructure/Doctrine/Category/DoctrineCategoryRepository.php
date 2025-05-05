@@ -2,8 +2,8 @@
 
 namespace App\SongManagement\Infrastructure\Doctrine\Category;
 
-use App\SongManagement\Domain\Category\Category;
-use App\SongManagement\Domain\Category\Repository\CategoryRepository;
+use App\SongManagement\Category\Domain\Category;
+use App\SongManagement\Category\Domain\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class DoctrineCategoryRepository implements CategoryRepository

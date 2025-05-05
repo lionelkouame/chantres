@@ -1,11 +1,12 @@
 <?php
 
-namespace App\SongManagement\Domain\Category\Event;
+namespace App\SongManagement\Category\Domain\Event;
 
 use App\Shared\Domain\ValueObject\CreatedAt;
 use App\Shared\Domain\ValueObject\UpdatedAt;
-use App\SongManagement\Domain\Category\ValueObject\CategoryId;
-use App\SongManagement\Domain\Category\ValueObject\CategoryName;
+use App\SongManagement\Category\Domain\Event\CategoryEventInterface;
+use App\SongManagement\Category\Domain\ValueObject\CategoryId;
+use App\SongManagement\Category\Domain\ValueObject\CategoryName;
 
 final readonly class CategoryCreated implements CategoryEventInterface
 {

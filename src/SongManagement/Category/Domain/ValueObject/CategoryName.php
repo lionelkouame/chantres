@@ -4,7 +4,7 @@
 
 declare(strict_types=1);
 
-namespace App\SongManagement\Domain\Category\ValueObject;
+namespace App\SongManagement\Category\Domain\ValueObject;
 
 class CategoryName
 {

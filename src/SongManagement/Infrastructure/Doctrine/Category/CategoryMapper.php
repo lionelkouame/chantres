@@ -4,9 +4,9 @@ namespace App\SongManagement\Infrastructure\Doctrine\Category;
 
 use App\Shared\Infrastructure\Doctrine\Mapper\CreatedAtMapper;
 use App\Shared\Infrastructure\Doctrine\Mapper\UpdatedAtMapper;
-use App\SongManagement\Domain\Category\Category;
-use App\SongManagement\Domain\Category\ValueObject\CategoryId;
-use App\SongManagement\Domain\Category\ValueObject\CategoryName;
+use App\SongManagement\Category\Domain\Category;
+use App\SongManagement\Category\Domain\ValueObject\CategoryId;
+use App\SongManagement\Category\Domain\ValueObject\CategoryName;
 
 final class CategoryMapper
 {

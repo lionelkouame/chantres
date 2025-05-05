@@ -5,7 +5,7 @@ namespace App\SongManagement\Infrastructure\Api\Processor;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
 use App\SongManagement\Application\Category\Command\CreateCategoryCommand;
-use App\SongManagement\Domain\Category\ValueObject\CategoryId;
+use App\SongManagement\Category\Domain\ValueObject\CategoryId;
 use App\SongManagement\Infrastructure\Api\Input\CreateCategoryInput;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Messenger\Exception\ExceptionInterface;

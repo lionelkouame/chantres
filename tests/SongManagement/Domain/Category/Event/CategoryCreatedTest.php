@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\SongManagement\Domain\Category\Event;
 
-use App\SongManagement\Domain\Category\Event\CategoryCreated;
-use App\SongManagement\Domain\Category\ValueObject\CategoryId;
-use App\SongManagement\Domain\Category\ValueObject\CategoryName;
+use App\SongManagement\Category\Domain\Event\CategoryCreated;
+use App\SongManagement\Category\Domain\ValueObject\CategoryId;
+use App\SongManagement\Category\Domain\ValueObject\CategoryName;
 use PHPUnit\Framework\TestCase;
 
 class CategoryCreatedTest extends TestCase

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\SongManagement\Domain\Category\ValueObject;
 
-use App\SongManagement\Domain\Category\ValueObject\CategoryId;
+use App\SongManagement\Category\Domain\ValueObject\CategoryId;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Uid\Uuid;
 

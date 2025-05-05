@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\SongManagement\Domain\Category\Repository;
+namespace App\SongManagement\Category\Domain\Repository;
 
-use App\SongManagement\Domain\Category\Category;
+use App\SongManagement\Category\Domain\Category;
 
 interface CategoryRepository
 {

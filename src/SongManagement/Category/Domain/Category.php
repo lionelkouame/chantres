@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\SongManagement\Domain\Category;
+namespace App\SongManagement\Category\Domain;
 
 use App\Shared\Domain\ValueObject\CreatedAt;
 use App\Shared\Domain\ValueObject\UpdatedAt;
-use App\SongManagement\Domain\Category\Event\CategoryCreated;
-use App\SongManagement\Domain\Category\Event\CategoryEventInterface;
-use App\SongManagement\Domain\Category\ValueObject\CategoryId;
-use App\SongManagement\Domain\Category\ValueObject\CategoryName;
+use App\SongManagement\Category\Domain\Event\CategoryCreated;
+use App\SongManagement\Category\Domain\Event\CategoryEventInterface;
+use App\SongManagement\Category\Domain\ValueObject\CategoryId;
+use App\SongManagement\Category\Domain\ValueObject\CategoryName;
 
 final class Category
 {

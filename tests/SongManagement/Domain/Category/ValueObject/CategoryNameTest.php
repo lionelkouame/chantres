@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\SongManagement\Domain\Category\ValueObject;
 
-use App\SongManagement\Domain\Category\ValueObject\CategoryName;
+use App\SongManagement\Category\Domain\ValueObject\CategoryName;
 use PHPUnit\Framework\TestCase;
 
 class CategoryNameTest extends TestCase
