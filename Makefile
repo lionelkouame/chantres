@@ -11,5 +11,11 @@ rector:
 rector-dry:
 	vendor/bin/rector process --dry-run
 
+ps:
+	docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+
+reload:
+	docker compose  down && docker compose up -d
+
 
 audit: cs-fix phpstan phpunit rector
