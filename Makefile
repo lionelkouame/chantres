@@ -8,8 +8,14 @@ phpunit:
 		vendor/bin/phpunit
 rector:
 	vendor/bin/rector process
-rector:
+rector-dry:
 	vendor/bin/rector process --dry-run
 
+ps:
+	docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
 
-audi: cs-fix phpstan phpunit
+reload:
+	docker compose  down && docker compose up -d
+
+
+audit: cs-fix phpstan phpunit rector

@@ -1,0 +1,37 @@
+# ADR-003 – Indexation et ReadModel
+
+**Statut** : Acceptée
+**Date** : 2025-05-08
+
+## Contexte
+
+Dans notre architecture CQRS (Command Query Responsibility Segregation), les commandes modifient l'état via des agrégats et les lectures sont servies par des projections dérivées de l'historique des événements (Event Sourcing). Le projet de gestion de chorale implique de nombreuses requêtes dynamiques : filtres, tris, recherche plein texte sur les chants, les membres, les activités, les performances passées.
+
+## Décision
+
+Tous les Read Models du projet seront gérés via **OpenSearch**. Les projections seront créées et synchronisées à partir des événements de domaine, et stockées dans des index OpenSearch consultables via l’API.
+
+## Justifications
+
+* 🔍 **Excellentes capacités de recherche** : plein texte, analyzers, filtres, agrégations, pertinence, etc.
+* ⚡ **Performance de lecture** : optimisé pour le temps de réponse rapide, même sur de gros volumes.
+* 🔁 **Alignement avec Event Sourcing** : projection asynchrone des événements sur des documents OpenSearch.
+* 📊 **Exploration et monitoring** : via OpenSearch Dashboards, pour l’analyse de l’activité ou la vérification des projections.
+* ⚙️ **Intégration aisée** : requêtage REST/JSON compatible avec les frontends modernes.
+
+## Conséquences
+
+* 📥 Chaque événement significatif devra être projeté vers un index spécifique OpenSearch.
+* 🧪 Les tests devront simuler ou contrôler l'état des index.
+* 🔄 La régénération des projections devra être automatisable (replay d'événements).
+* 🛠️ Des outils de supervision de la synchronisation (événements -> index) devront être en place.
+* 🧰 L'équipe devra maîtriser le DSL OpenSearch et ses mécanismes d’indexation/rafraîchissement.
+
+## Alternatives envisagées
+
+* PostgreSQL avec JSONB : plus simple, mais moins performant pour la recherche textuelle.
+* MongoDB : offre aussi des capacités de requêtage documentaires, mais moins spécialisées en plein texte.
+
+---
+
+Les futurs Read Models devront être déclarés avec leur source d'événements et leur schéma d'indexation.

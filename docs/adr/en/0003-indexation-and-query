@@ -1,0 +1,37 @@
+# ADR-003 – Indexing and ReadModel
+
+**Status**: Accepted
+**Date**: 2025-05-08
+
+## Context
+
+In our CQRS (Command Query Responsibility Segregation) architecture, commands modify the state via aggregates, and reads are served by projections derived from the event history (Event Sourcing). The choir management project involves many dynamic queries: filters, sorting, full-text search on songs, members, activities, and past performances.
+
+## Decision
+
+All Read Models in the project will be managed via **OpenSearch**. Projections will be created and synchronized from domain events and stored in OpenSearch indexes, which can be queried via the API.
+
+## Justifications
+
+* 🔍 **Excellent search capabilities**: full-text, analyzers, filters, aggregations, relevance, etc.
+* ⚡ **Read performance**: optimized for fast response times, even with large volumes.
+* 🔁 **Alignment with Event Sourcing**: asynchronous projection of events onto OpenSearch documents.
+* 📊 **Exploration and monitoring**: via OpenSearch Dashboards, for activity analysis or projection verification.
+* ⚙️ **Easy integration**: REST/JSON querying compatible with modern frontends.
+
+## Consequences
+
+* 📥 Each significant event must be projected to a specific OpenSearch index.
+* 🧪 Tests must simulate or control the state of the indexes.
+* 🔄 Projection regeneration must be automatable (event replay).
+* 🛠️ Tools for monitoring synchronization (events -> indexes) must be in place.
+* 🧰 The team must master the OpenSearch DSL and its indexing/refresh mechanisms.
+
+## Alternatives considered
+
+* PostgreSQL with JSONB: simpler but less performant for text search.
+* MongoDB: also offers document querying capabilities but is less specialized in full-text search.
+
+---
+
+Future Read Models must be declared with their event source and indexing schema.
