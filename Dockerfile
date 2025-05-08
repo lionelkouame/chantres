@@ -15,6 +15,8 @@ WORKDIR /app
 
 VOLUME /app/var/
 
+RUN git config --global --add safe.directory /app
+
 # persistent / runtime deps
 # hadolint ignore=DL3008
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -109,8 +111,6 @@ RUN set -eux; \
 	composer dump-env prod; \
 	composer run-script --no-dev post-install-cmd; \
 	chmod +x bin/console; sync;
-
-RUN git config --global --add safe.directory /app
 
 
 
