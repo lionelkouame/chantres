@@ -54,9 +54,6 @@ jobs:
         name: Afficher les logs du conteneur PHP
         run: docker compose logs  | grep php || true  
       -
-        name: Check HTTP reachability
-        run: curl -v --fail-with-body http://localhost
-      -
         name: Check HTTPS reachability
         if: false # Remove this line when the homepage will be configured, or change the path to check
         run: curl -vk --fail-with-body https://localhost
