@@ -6,6 +6,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
+      start_period: 30s
     build:      
       context: .
       target: frankenphp_dev
@@ -26,6 +27,48 @@ services:
       # Ensure that host.docker.internal is correctly defined on Linux
       - host.docker.internal:host-gateway
     tty: true
+  
+  opensearch:
+    image: opensearchproject/opensearch:2
+    environment:
+      - discovery.type=single-node
+      - plugins.security.disabled=false
+      - bootstrap.memory_lock=true
+      - OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=Str0ng@Ch0rale2024
+
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+        - "9200:9200"
+    volumes:
+        - opensearch-data:/usr/share/opensearch/data
+  
+  opensearch-dashboard:
+    image: opensearchproject/opensearch-dashboards:2
+    environment:
+      - OPENSEARCH_HOSTS=https://opensearch:9200
+      - OPENSEARCH_USERNAME=admin
+      - OPENSEARCH_PASSWORD=Str0ng@Ch0rale2024
+    ports:
+        - "5601:5601"
+    depends_on:
+        - opensearch
+  
 
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-
+
+###> doctrine/doctrine-bundle ###
+  database:
+    ports:
+      - "5432"
+###< doctrine/doctrine-bundle ###
+  
+  
+volumes:
+    opensearch-data: ~
+
+  
