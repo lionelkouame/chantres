@@ -15,7 +15,6 @@ WORKDIR /app
 
 VOLUME /app/var/
 
-RUN git config --global --add safe.directory /app
 
 # persistent / runtime deps
 # hadolint ignore=DL3008
@@ -67,6 +66,9 @@ ENTRYPOINT ["docker-entrypoint"]
 
 HEALTHCHECK --start-period=60s CMD curl -f http://localhost:2019/metrics || exit 1
 CMD [ "frankenphp", "run", "--config", "/etc/caddy/Caddyfile" ]
+
+RUN git config --global --add safe.directory /app
+
 
 
 # Dev FrankenPHP image
