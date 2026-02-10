@@ -69,6 +69,9 @@ jobs:
         name: Run migrations
         if: false # Remove this line if Doctrine Migrations is installed
         run: docker compose exec -T php bin/console -e test doctrine:migrations:migrate --no-interaction
+      -  
+        name: Composer install
+        run:  docker compose exec -T php composer install --no-interaction --prefer-dist
       -
         name: Run PHPUnit
         run: docker compose exec -T php bin/phpunit
