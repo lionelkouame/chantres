@@ -14,15 +14,20 @@ services:
       - ./:/app
       - ./frankenphp/Caddyfile:/etc/caddy/Caddyfile:ro
       - ./frankenphp/conf.d/20-app.dev.ini:/usr/local/etc/php/app.conf.d/20-app.dev.ini:ro
-      # If you develop on Mac or Windows you can remove the vendor/ directory
-      #  from the bind-mount for better performance by enabling the next line:
-      #- /app/vendor
+      - caddy_data:/data 
+      - caddy_config:/config
     environment:
       FRANKENPHP_WORKER_CONFIG: watch
-      MERCURE_EXTRA_DIRECTIVES: demo
+      MERCURE_TRANSPORT_URL: ""
+      MERCURE_EXTRA_DIRECTIVES: |
+        transport bolt "/data/mercure.db"
+        demo
+      MERCURE_URL: http://php/.well-known/mercure
+      MERCURE_PUBLIC_URL: https://localhost/.well-known/mercure
       # See https://xdebug.org/docs/all_settings#mode
       XDEBUG_MODE: "${XDEBUG_MODE:-off}"
       APP_ENV: "${APP_ENV:-dev}"
+    
     extra_hosts:
       # Ensure that host.docker.internal is correctly defined on Linux
       - host.docker.internal:host-gateway
@@ -56,8 +61,6 @@ services:
         - "5601:5601"
     depends_on:
         - opensearch
-  
-
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-
 
@@ -69,6 +72,8 @@ services:
   
   
 volumes:
-    opensearch-data: ~
+  opensearch-data: ~
+  caddy_data: ~    
+  caddy_config: ~ 
 
   

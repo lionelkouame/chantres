@@ -107,6 +107,12 @@ RUN set -eux; \
 COPY --link . ./
 RUN rm -Rf frankenphp/
 
+# Installation des dépendances système pour PostgreSQL
+RUN apk add --no-cache postgresql-dev
+
+# Installation de l'extension PHP
+RUN docker-php-ext-install pdo_pgsql
+
 RUN set -eux; \
 	mkdir -p var/cache var/log; \
 	composer dump-autoload --classmap-authoritative --no-dev; \

@@ -17,5 +17,10 @@ ps:
 reload:
 	docker compose  down && docker compose up -d
 
+reset:
+	docker compose  down && docker compose up --build -d --force-recreate && ps
 
 audit: cs-fix phpstan phpunit rector
+
+log-php:
+	 docker compose logs -f php
