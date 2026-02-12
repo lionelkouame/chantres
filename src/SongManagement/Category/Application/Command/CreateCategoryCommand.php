@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace App\SongManagement\Category\Application\Command;
 
-final readonly class CreateCategoryCommand
+use App\SongManagement\Category\Domain\ValueObject\CategoryId;
+use App\SongManagement\Category\Domain\ValueObject\CategoryName;
+
+readonly class CreateCategoryCommand
 {
     public function __construct(
-        public string $id,
-        public string $name,
+        public CategoryId $id,
+        public CategoryName $name,
     ) {
     }
 }
