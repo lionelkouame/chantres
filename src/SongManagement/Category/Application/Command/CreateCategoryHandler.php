@@ -21,7 +21,7 @@ class CreateCategoryHandler
     public function __invoke(CreateCategoryCommand $command): void
     {
         $id = new CategoryId($command->id->getValue());
-        $name = new CategoryName($command->name->getValue());
+        $name = new CategoryName($command->name->value());
 
         $category = Category::create($id, $name);
 

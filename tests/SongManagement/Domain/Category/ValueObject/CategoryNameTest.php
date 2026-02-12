@@ -13,6 +13,6 @@ class CategoryNameTest extends TestCase
     {
         $name = new CategoryName('HelloCat');
 
-        $this->assertSame('HelloCat', $name->getValue());
+        $this->assertSame('HelloCat', $name->value());
     }
 }
