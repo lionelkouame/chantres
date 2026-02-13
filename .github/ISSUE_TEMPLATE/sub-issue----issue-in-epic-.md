@@ -1,5 +1,5 @@
 ---
-name: Sub issue - (issue in epic)
+name: 🧱 Sub issue - (issue in epic)
 about: Describe this issue template's purpose here.
 title: ''
 labels: Epic Task
