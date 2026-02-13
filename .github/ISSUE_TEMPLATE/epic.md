@@ -1,3 +1,11 @@
+---
+name: 🚀 Epic
+about: Template pour les grandes fonctionnalités ou phases du projet.
+title: "[EPIC]: "
+labels: Epic
+assignees: ''
+---
+
 ## 📝 Overview
 The objective is to [describe the end goal] in order to enable [user/system] to [benefit].
 
