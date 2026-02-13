@@ -6,6 +6,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
+      start_period: 30s
     build:      
       context: .
       target: frankenphp_dev
@@ -13,19 +14,66 @@ services:
       - ./:/app
       - ./frankenphp/Caddyfile:/etc/caddy/Caddyfile:ro
       - ./frankenphp/conf.d/20-app.dev.ini:/usr/local/etc/php/app.conf.d/20-app.dev.ini:ro
-      # If you develop on Mac or Windows you can remove the vendor/ directory
-      #  from the bind-mount for better performance by enabling the next line:
-      #- /app/vendor
+      - caddy_data:/data 
+      - caddy_config:/config
     environment:
       FRANKENPHP_WORKER_CONFIG: watch
-      MERCURE_EXTRA_DIRECTIVES: demo
+      MERCURE_TRANSPORT_URL: ""
+      MERCURE_EXTRA_DIRECTIVES: |
+        transport bolt "/data/mercure.db"
+        demo
+      MERCURE_URL: http://php/.well-known/mercure
+      MERCURE_PUBLIC_URL: https://localhost/.well-known/mercure
       # See https://xdebug.org/docs/all_settings#mode
       XDEBUG_MODE: "${XDEBUG_MODE:-off}"
       APP_ENV: "${APP_ENV:-dev}"
+    
     extra_hosts:
       # Ensure that host.docker.internal is correctly defined on Linux
       - host.docker.internal:host-gateway
     tty: true
+  
+  opensearch:
+    image: opensearchproject/opensearch:2
+    environment:
+      - discovery.type=single-node
+      - plugins.security.disabled=false
+      - bootstrap.memory_lock=true
+      - OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=Str0ng@Ch0rale2024
 
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+        - "9200:9200"
+    volumes:
+        - opensearch-data:/usr/share/opensearch/data
+  
+  opensearch-dashboard:
+    image: opensearchproject/opensearch-dashboards:2
+    environment:
+      - OPENSEARCH_HOSTS=https://opensearch:9200
+      - OPENSEARCH_USERNAME=admin
+      - OPENSEARCH_PASSWORD=Str0ng@Ch0rale2024
+    ports:
+        - "5601:5601"
+    depends_on:
+        - opensearch
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-
+
+###> doctrine/doctrine-bundle ###
+  database:
+    ports:
+      - "5432"
+###< doctrine/doctrine-bundle ###
+  
+  
+volumes:
+  opensearch-data: ~
+  caddy_data: ~    
+  caddy_config: ~ 
+
+  
