@@ -24,6 +24,10 @@ This project is designed to be extensible and open for community contributions.
 base on Fork symfony-docker read the documentation
 [Symfony-docker](docs/symfony-docker.md)
 
+### Database
+This project uses PostgreSQL as its database. For setup and connection instructions, see:
+[PostgreSQL Setup Guide](docs/postgresql.md)
+
 
 ## 🤝 Contributing
 We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
