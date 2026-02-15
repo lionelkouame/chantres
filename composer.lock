@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5b2d2bdb14fcd6c71f4435a7ba4b0028",
+    "content-hash": "2869024d92803273831b4e4d9e0b60d8",
     "packages": [
         {
             "name": "psr/cache",
@@ -1992,16 +1992,16 @@
         },
         {
             "name": "symfony/runtime",
-            "version": "v7.2.3",
+            "version": "v7.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/runtime.git",
-                "reference": "8e8d09bd69b7f6c0260dd3d58f37bd4fbdeab5ad"
+                "reference": "40d1c481c2370362010a4da64af14dec62a9ec68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/runtime/zipball/8e8d09bd69b7f6c0260dd3d58f37bd4fbdeab5ad",
-                "reference": "8e8d09bd69b7f6c0260dd3d58f37bd4fbdeab5ad",
+                "url": "https://api.github.com/repos/symfony/runtime/zipball/40d1c481c2370362010a4da64af14dec62a9ec68",
+                "reference": "40d1c481c2370362010a4da64af14dec62a9ec68",
                 "shasum": ""
             },
             "require": {
@@ -2051,7 +2051,7 @@
                 "runtime"
             ],
             "support": {
-                "source": "https://github.com/symfony/runtime/tree/v7.2.3"
+                "source": "https://github.com/symfony/runtime/tree/v7.2.8"
             },
             "funding": [
                 {
@@ -2067,7 +2067,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-12-29T21:39:47+00:00"
+            "time": "2025-06-13T07:47:28+00:00"
         },
         {
             "name": "symfony/service-contracts",

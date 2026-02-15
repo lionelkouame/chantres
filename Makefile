@@ -11,5 +11,7 @@ rector:
 rector:
 	vendor/bin/rector process --dry-run
 
-
 audi: cs-fix phpstan phpunit
+
+ssh:
+	docker compose exec php bash
