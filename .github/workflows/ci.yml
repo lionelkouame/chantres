@@ -38,8 +38,6 @@ jobs:
       - name: Start services
         run: docker compose up --wait --no-build
 
-      # --- ANALYSE DE CODE (Dans le conteneur PHP) ---
-
       - name: PHPStan
         run: docker compose exec -T php vendor/bin/phpstan analyse --no-progress
 
