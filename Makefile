@@ -18,6 +18,9 @@ up: ## Démarre les services (attend qu'ils soient healthy)
 down: ## Arrête tout et supprime les volumes
 	$(DOCKER_COMPOSE) down -v
 
+ps: ## Affiche les conteneurs en cours avec leur taille
+	docker ps --size --format "table {{.Names}}\t{{.Status}}\t{{.Size}}"
+
 ssh: ## Entre dans le conteneur PHP
 	$(DOCKER_COMPOSE) exec php bash
 

@@ -14,5 +14,9 @@ final readonly class Name
     {
         return $this->value;
     }
+    public function value() : string
+    {
+        return $this->value;
+    }
 
 }
