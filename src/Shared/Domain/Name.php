@@ -14,4 +14,5 @@ final readonly class Name
     {
         return $this->value;
     }
+
 }
