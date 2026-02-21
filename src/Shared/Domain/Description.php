@@ -6,7 +6,7 @@ namespace App\Shared\Domain;
 
 use App\Shared\StringValueObjectInterface;
 
-final readonly class Name
+class Description
 {
     use StringValueObjectInterface;
 }
