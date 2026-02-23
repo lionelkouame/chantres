@@ -1,0 +1,15 @@
+services:
+  php:
+    build:
+      context: .
+      target: frankenphp_dev
+    volumes: []
+    environment:
+      APP_ENV: test 
+      XDEBUG_MODE: "off"
+      FRANKENPHP_WORKER_CONFIG: ""
+    healthcheck:
+      test: ["CMD", "php", "-v"]
+      interval: 5s
+      timeout: 3s
+      retries: 5

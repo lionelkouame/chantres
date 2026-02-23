@@ -4,12 +4,12 @@ namespace App\Shared;
 
 trait StringValueObjectInterface
 {
-    public function __construct(public string $value)
+    public function __construct(public readonly string $value)
     {
     }
     public function value(): string
     {
-        return $this->value;
+        return $this->value.'coucou';
     }
 
     public function __toString(): string
