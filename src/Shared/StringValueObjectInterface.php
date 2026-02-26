@@ -9,7 +9,7 @@ trait StringValueObjectInterface
     }
     public function value(): string
     {
-        return $this->value.'coucou';
+        return $this->value;
     }
 
     public function __toString(): string
