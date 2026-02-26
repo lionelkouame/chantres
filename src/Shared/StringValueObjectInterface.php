@@ -7,6 +7,7 @@ trait StringValueObjectInterface
     public function __construct(public readonly string $value)
     {
     }
+
     public function value(): string
     {
         return $this->value;
