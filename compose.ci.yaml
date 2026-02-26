@@ -8,9 +8,12 @@ services:
       APP_ENV: test 
       XDEBUG_MODE: "off"
       FRANKENPHP_WORKER_CONFIG: ""
+      SERVER_NAME: ":80"
       CADDY_GLOBAL_OPTIONS: "local_certs"
     healthcheck:
       test: ["CMD", "php", "-v"]
       interval: 5s
       timeout: 3s
       retries: 5
+    ports:
+      - "80:80"
