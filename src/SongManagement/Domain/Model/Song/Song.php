@@ -6,5 +6,4 @@ namespace App\SongManagement\Domain\Model\Song;
 
 readonly class Song
 {
-
 }
