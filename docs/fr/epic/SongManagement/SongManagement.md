@@ -15,7 +15,7 @@ Cette couche est isolée : elle ne dépend ni de Doctrine, ni de Symfony, ni d'a
 ## 2. Modèle de Domaine (Aggregates & Value Objects)
 
 ### **Aggregate Root : `Song`**
-* **Responsabilité :** Garantir l'intégrité globale d'un chant.
+* **Responsabilité :** Garantir lgit branch 'intégrité globale d'un chant.
 * **Identité :** `SongId` (Value Object encapsulant un UUID).
 * **Attributs :** Titre, Compositeur, Parolier, Langue, Thématique.
 * **Relations :** Gère une collection d'entités `Arrangement`.

@@ -1,0 +1,12 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\SongManagement\Domain\Model\Song;
+
+use App\Shared\StringValueObjectInterface;
+
+class Title
+{
+    use StringValueObjectInterface;
+}
