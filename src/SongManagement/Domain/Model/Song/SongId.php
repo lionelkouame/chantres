@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\SongManagement\Domain\Model\Song;
 
+use InvalidArgumentException;
+
 /**
  * SongId Value Object.
  *
@@ -13,7 +15,7 @@ namespace App\SongManagement\Domain\Model\Song;
  */
 readonly class SongId
 {
-    private const UUID_PATTERN = '/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i';
+    private const string UUID_PATTERN = '/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i';
 
     private function __construct(
         private string $value,
@@ -44,7 +46,7 @@ readonly class SongId
     private function ensureIsValidUuid(string $value): void
     {
         if (!preg_match(self::UUID_PATTERN, $value)) {
-            throw new \InvalidArgumentException(sprintf('The given value "%s" is not a valid UUID.', $value));
+            throw new InvalidArgumentException(sprintf('The given value "%s" is not a valid UUID.', $value));
         }
     }
 }
