@@ -135,4 +135,3 @@ final class TitleTest extends TestCase
         self::assertSame((string) $title1, (string) $title2);
     }
 }
-
