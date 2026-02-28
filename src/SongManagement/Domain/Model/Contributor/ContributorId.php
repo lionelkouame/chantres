@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\SongManagement\Domain\Model\Contributor;
 
 /**
- * SongId Value Object.
+ * ContributorId Value Object.
  *
  * Pur Domain implementation with no framework dependencies.
  *
