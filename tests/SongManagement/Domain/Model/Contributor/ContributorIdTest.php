@@ -9,8 +9,8 @@ use PHPUnit\Framework\TestCase;
 
 final class ContributorIdTest extends TestCase
 {
-    private const VALID_UUID = '550e8400-e29b-41d4-a716-446655440000';
-    private const ANOTHER_VALID_UUID = '6ba7b810-9dad-11d1-80b4-00c04fd430c8';
+    private const string VALID_UUID = '550e8400-e29b-41d4-a716-446655440000';
+    private const string ANOTHER_VALID_UUID = '6ba7b810-9dad-11d1-80b4-00c04fd430c8';
 
     public function testcreatesFromValidUuid(): void
     {
