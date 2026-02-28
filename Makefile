@@ -44,7 +44,7 @@ rector: ## Rector (applique les modifications)
 phpunit: ## Lance les tests unitaires
 	$(PHP_CONT) vendor/bin/phpunit
 
-audit: cs-fix phpstan phpunit ## Lance l'audit complet local (avec corrections auto)
+audit: cs-fix phpstan phpunit rector ## Lance l'audit complet local (avec corrections auto)
 
 ## --- CI SIMULATION ---
 
