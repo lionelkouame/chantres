@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\SongManagement\Domain\Model\Contributor;
+namespace App\Shared\Domain;
 
 use App\Shared\StringValueObjectInterface;
 
-readonly class Biography
+final readonly class FirstName
 {
     use StringValueObjectInterface;
 }
