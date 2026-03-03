@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\SongManagement\Domain\Model\Contributor;
 
+use App\Shared\Domain\FullName;
+
 /**
  * Aggregate Root representing a Contributor within the catalog.
  *
@@ -16,11 +18,17 @@ readonly class Contributor
 {
     private function __construct(
         private ContributorId $contributorId,
+        private FullName $fullName,
     ) {
     }
 
     public function contributorId(): ContributorId
     {
         return $this->contributorId;
+    }
+
+    public function fullName(): FullName
+    {
+        return $this->fullName;
     }
 }
