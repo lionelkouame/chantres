@@ -19,7 +19,13 @@ readonly class Contributor
     private function __construct(
         private ContributorId $contributorId,
         private FullName $fullName,
+        private ?Biography $biography = null,
     ) {
+    }
+
+    public static function register(ContributorId $id, FullName $name, ?Biography $biography = null): self
+    {
+        return new self($id, $name, $biography);
     }
 
     public function contributorId(): ContributorId
@@ -30,5 +36,10 @@ readonly class Contributor
     public function fullName(): FullName
     {
         return $this->fullName;
+    }
+
+    public function biography(): ?Biography
+    {
+        return $this->biography;
     }
 }
