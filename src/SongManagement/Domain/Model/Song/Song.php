@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\SongManagement\Domain\Model\Song;
 
+use App\SongManagement\Domain\Model\Contributor\ContributorIdCollection;
+
 /**
  * Aggregate Root representing a Song within the catalog.
  *
@@ -18,12 +20,17 @@ readonly class Song
     private function __construct(
         private SongId $songId,
         private Title $title,
+        private ContributorIdCollection $contributors,
     ) {
     }
 
-    public static function create(SongId $id, Title $title): self
+    public static function create(SongId $id, Title $title, ContributorIdCollection $contributors): self
     {
-        return new self($id, $title);
+        if ($contributors->isEmpty()) {
+            throw new \InvalidArgumentException('A song must have at least one contributor.');
+        }
+
+        return new self($id, $title, $contributors);
     }
 
     public function songId(): SongId
@@ -34,5 +41,10 @@ readonly class Song
     public function title(): Title
     {
         return $this->title;
+    }
+
+    public function contributors(): ContributorIdCollection
+    {
+        return $this->contributors;
     }
 }
