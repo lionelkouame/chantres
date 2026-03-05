@@ -32,11 +32,12 @@ final class TitleTest extends TestCase
         self::assertSame($titleValue, (string) $title);
     }
 
-    public function testAcceptsEmptyString(): void
+    public function testRejectsEmptyString(): void
     {
-        $title = new Title('');
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Song title cannot be empty.');
 
-        self::assertSame('', $title->value());
+        new Title('');
     }
 
     public function testAcceptsSingleCharacter(): void

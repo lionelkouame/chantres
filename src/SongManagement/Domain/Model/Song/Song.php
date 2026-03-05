@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace App\SongManagement\Domain\Model\Song;
 
-use App\Shared\Domain\DomainEventInterface;
-use App\SongManagement\Domain\Event\SongAddedToLibrary;
-use App\SongManagement\Domain\Model\Contributor\ContributorIdCollection;
-
 /**
  * Aggregate Root representing a Song within the catalog.
  *
@@ -17,25 +13,17 @@ use App\SongManagement\Domain\Model\Contributor\ContributorIdCollection;
  *
  * @author Lionel KOUAME
  */
-class Song
+readonly class Song
 {
-    /** @var DomainEventInterface[] */
-    private array $domainEvents = [];
-
     private function __construct(
-        private readonly SongId $songId,
+        private SongId $songId,
+        private Title $title,
     ) {
     }
 
-    /**
-     * Factory method: creates a Song and records a SongAddedToLibrary event.
-     */
-    public static function add(SongId $id, ContributorIdCollection $contributorIds): self
+    public static function create(SongId $id, Title $title): self
     {
-        $song = new self($id);
-        $song->record(new SongAddedToLibrary($id, $contributorIds));
-
-        return $song;
+        return new self($id, $title);
     }
 
     public function songId(): SongId
@@ -43,21 +31,8 @@ class Song
         return $this->songId;
     }
 
-    /**
-     * Returns and clears all recorded domain events.
-     *
-     * @return DomainEventInterface[]
-     */
-    public function releaseEvents(): array
+    public function title(): Title
     {
-        $events = $this->domainEvents;
-        $this->domainEvents = [];
-
-        return $events;
-    }
-
-    private function record(DomainEventInterface $event): void
-    {
-        $this->domainEvents[] = $event;
+        return $this->title;
     }
 }
