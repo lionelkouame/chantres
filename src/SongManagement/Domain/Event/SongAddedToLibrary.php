@@ -20,9 +20,9 @@ use App\SongManagement\Domain\Model\Song\SongId;
 readonly class SongAddedToLibrary implements DomainEventInterface
 {
     public function __construct(
-        private SongId                  $songId,
+        private SongId $songId,
         private ContributorIdCollection $contributorIdList,
-        private \DateTimeImmutable      $occurredOn = new \DateTimeImmutable(),
+        private \DateTimeImmutable $occurredOn = new \DateTimeImmutable(),
     ) {
     }
 
