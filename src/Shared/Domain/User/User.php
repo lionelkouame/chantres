@@ -42,4 +42,3 @@ readonly class User
         return $this->profile;
     }
 }
-
