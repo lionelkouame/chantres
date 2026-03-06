@@ -11,17 +11,30 @@ use PHPUnit\Framework\TestCase;
 
 final class FullNameTest extends TestCase
 {
-    public function testItReturnsTheFullNameValue(): void
+    private FullName $fullName;
+
+    protected function setUp(): void
     {
-        $fullName = new FullName(new FirstName('John'), new LastName('Doe'));
-        self::assertSame('John Doe', $fullName->value());
-        self::assertSame('John Doe', (string) $fullName);
+        $this->fullName = new FullName(new FirstName('John'), new LastName('Doe'));
     }
 
-    public function testItExposesFirstAndLastName(): void
+    public function testValueConcatenatesFirstAndLastName(): void
     {
-        $fullName = new FullName(new FirstName('John'), new LastName('Doe'));
-        self::assertSame('John', $fullName->firstName->value());
-        self::assertSame('Doe', $fullName->lastName->value());
+        self::assertSame('John Doe', $this->fullName->value());
+    }
+
+    public function testToStringReturnsFullName(): void
+    {
+        self::assertSame('John Doe', (string) $this->fullName);
+    }
+
+    public function testExposesFirstName(): void
+    {
+        self::assertSame('John', $this->fullName->firstName->value());
+    }
+
+    public function testExposesLastName(): void
+    {
+        self::assertSame('Doe', $this->fullName->lastName->value());
     }
 }
