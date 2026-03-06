@@ -21,4 +21,15 @@ final readonly class FullName
     {
         return $this->value();
     }
+
+    public function firstName() : FirstName
+    {
+        return $this->firstName;
+    }
+
+    public function lastName() : LastName
+    {
+        return $this->lastName;
+
+    }
 }
