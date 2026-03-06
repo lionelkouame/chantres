@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Shared\Domain\User;
 
+use App\Shared\Domain\IdentityTrait;
+
 /**
  * SongId Value Object.
  *
@@ -13,38 +15,5 @@ namespace App\Shared\Domain\User;
  */
 readonly class UserId
 {
-    private const string UUID_PATTERN = '/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i';
-
-    private function __construct(
-        private string $value,
-    ) {
-        $this->ensureIsValidUuid($this->value);
-    }
-
-    public static function fromString(string $value): self
-    {
-        return new self($value);
-    }
-
-    public function value(): string
-    {
-        return $this->value;
-    }
-
-    public function equal(self $other): bool
-    {
-        return $this->value === $other->value;
-    }
-
-    public function __toString(): string
-    {
-        return $this->value;
-    }
-
-    private function ensureIsValidUuid(string $value): void
-    {
-        if (!preg_match(self::UUID_PATTERN, $value)) {
-            throw new \InvalidArgumentException(sprintf('The given value "%s" is not a valid UUID.', $value));
-        }
-    }
+    use IdentityTrait;
 }
