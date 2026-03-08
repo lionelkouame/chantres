@@ -27,6 +27,11 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
+        <report>
+            <clover outputFile="var/coverage/clover.xml"/>
+            <html outputDirectory="var/coverage/html"/>
+            <text outputFile="php://stdout" showUncoveredFiles="false"/>
+        </report>
     </coverage>
 
     <listeners>

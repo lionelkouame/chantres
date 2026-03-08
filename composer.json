@@ -70,6 +70,7 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.75",
+        "infection/infection": "^0.29",
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-symfony": "^2.0",
         "phpunit/phpunit": "^9.5",

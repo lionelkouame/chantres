@@ -2,7 +2,7 @@
 DOCKER_COMPOSE = docker compose
 PHP_CONT = $(DOCKER_COMPOSE) exec -T php
 
-.PHONY: help build up down ssh audit phpstan rector rector-dry cs-fix cs-fix-dry phpunit test-ci
+.PHONY: help build up down ssh audit phpstan rector rector-dry cs-fix cs-fix-dry phpunit phpunit-coverage infection test-ci
 
 help: ## Affiche cette aide
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
@@ -43,6 +43,12 @@ rector: ## Rector (applique les modifications)
 
 phpunit: ## Lance les tests unitaires
 	$(PHP_CONT) vendor/bin/phpunit
+
+phpunit-coverage: ## Lance les tests avec rapport de couverture
+	$(PHP_CONT) vendor/bin/phpunit --coverage-clover var/coverage/clover.xml --coverage-html var/coverage/html
+
+infection: ## Lance les tests de mutation avec Infection
+	$(PHP_CONT) vendor/bin/infection --threads=4
 
 audit: cs-fix phpstan phpunit rector ## Lance l'audit complet local (avec corrections auto)
 

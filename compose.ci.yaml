@@ -9,8 +9,40 @@ services:
       APP_ENV: test
       XDEBUG_MODE: "off"
       FRANKENPHP_WORKER_CONFIG: ""
+      ###> symfony/messenger ###
+      MESSENGER_TRANSPORT_DSN: amqp://guest:guest@rabbitmq:5672/%2f/messages
+      ###< symfony/messenger ###
+      ###> opensearch ###
+      OPENSEARCH_URL: http://opensearch:9200
+      ###< opensearch ###
     healthcheck:
       test: ["CMD", "php", "-v"]
       interval: 5s
       timeout: 3s
       retries: 5
+
+###> symfony/messenger ###
+  rabbitmq:
+    image: rabbitmq:4-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+###< symfony/messenger ###
+
+###> opensearch ###
+  opensearch:
+    image: opensearchproject/opensearch:2
+    environment:
+      discovery.type: single-node
+      DISABLE_SECURITY_PLUGIN: "true"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:9200/_cluster/health || exit 1"]
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+###< opensearch ###
