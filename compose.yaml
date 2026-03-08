@@ -15,6 +15,12 @@ services:
       # The two next lines can be removed after initial installation
       SYMFONY_VERSION: ${SYMFONY_VERSION:-}
       STABILITY: ${STABILITY:-stable}
+      ###> symfony/messenger ###
+      MESSENGER_TRANSPORT_DSN: amqp://${RABBITMQ_USER:-guest}:${RABBITMQ_PASSWORD:-guest}@rabbitmq:5672/%2f/messages
+      ###< symfony/messenger ###
+      ###> opensearch ###
+      OPENSEARCH_URL: ${OPENSEARCH_URL:-http://opensearch:9200}
+      ###< opensearch ###
     volumes:
       - caddy_data:/data
       - caddy_config:/config
@@ -52,6 +58,39 @@ services:
       # - ./docker/db/data:/var/lib/postgresql/data:rw
 ###< doctrine/doctrine-bundle ###
 
+###> symfony/messenger ###
+  rabbitmq:
+    image: rabbitmq:4-management-alpine
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-guest}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-guest}
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+###< symfony/messenger ###
+
+###> opensearch ###
+  opensearch:
+    image: opensearchproject/opensearch:2
+    restart: unless-stopped
+    environment:
+      discovery.type: single-node
+      OPENSEARCH_INITIAL_ADMIN_PASSWORD: ${OPENSEARCH_INITIAL_ADMIN_PASSWORD:-Ch@ngeMe1!}
+      DISABLE_SECURITY_PLUGIN: "true"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:9200/_cluster/health || exit 1"]
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    volumes:
+      - opensearch_data:/usr/share/opensearch/data
+###< opensearch ###
+
 # Mercure is installed as a Caddy module, prevent the Flex recipe from installing another service
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-bundle ###
@@ -64,3 +103,9 @@ volumes:
 ###> doctrine/doctrine-bundle ###
   database_data:
 ###< doctrine/doctrine-bundle ###
+###> symfony/messenger ###
+  rabbitmq_data:
+###< symfony/messenger ###
+###> opensearch ###
+  opensearch_data:
+###< opensearch ###

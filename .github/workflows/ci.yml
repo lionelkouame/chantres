@@ -63,7 +63,14 @@ jobs:
         run: docker compose exec -T php bin/console -e test doctrine:migrations:migrate --no-interaction
       -
         name: Run PHPUnit
-        run: docker compose exec -T php bin/phpunit
+        run: docker compose exec -T php bin/phpunit --coverage-clover var/coverage/clover.xml
+      -
+        name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: var/coverage/clover.xml
+          if-no-files-found: ignore
       -
         name: Doctrine Schema Validator
         if: false # Remove this line if Doctrine ORM is installed
@@ -128,4 +135,23 @@ jobs:
         run: composer install --no-interaction --prefer-dist
       - name: Run rector in dry run mod
         run: vendor/bin/rector process --dry-run
+
+  infection:
+    name: Infection (Mutation Testing)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3.19'
+          tools: composer
+          coverage: xdebug
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: composer install
+        run: composer install --no-interaction --prefer-dist
+      - name: Run Infection
+        run: vendor/bin/infection --threads=4 --min-msi=80 --min-covered-msi=80
 

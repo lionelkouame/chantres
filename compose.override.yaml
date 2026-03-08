@@ -33,5 +33,18 @@ services:
       - "5432"
 ###< doctrine/doctrine-bundle ###
 
+###> symfony/messenger ###
+  rabbitmq:
+    ports:
+      - "5672"
+      - "15672"
+###< symfony/messenger ###
+
+###> opensearch ###
+  opensearch:
+    ports:
+      - "9200"
+###< opensearch ###
+
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-
