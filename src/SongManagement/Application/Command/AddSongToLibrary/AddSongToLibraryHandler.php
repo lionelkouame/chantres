@@ -38,7 +38,7 @@ final readonly class AddSongToLibraryHandler implements CommandHandlerInterface
     {
         $songId = SongId::fromString($command->songId);
 
-        if ($this->songRepository->findById($songId) instanceof \App\SongManagement\Domain\Model\Song\Song) {
+        if ($this->songRepository->findById($songId) instanceof Song) {
             throw SongAlreadyExistsException::withId($songId);
         }
 
