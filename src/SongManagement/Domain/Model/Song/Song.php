@@ -32,7 +32,7 @@ readonly class Song
         Title $title,
         ContributorId $composerId,
         ContributorId $lyricistId,
-        ArrangementCollection $arrangements,
+        ArrangementCollection $arrangements = new ArrangementCollection(),
     ): self {
         return new self($id, $title, $composerId, $lyricistId, $arrangements);
     }

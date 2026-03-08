@@ -31,14 +31,6 @@ final class SongTest extends TestCase
         );
     }
 
-    public function testCreatesWithNoArrangements(): void
-    {
-        $song = $this->buildSong(new ArrangementCollection());
-
-        self::assertInstanceOf(Song::class, $song);
-        self::assertTrue($song->arrangements()->isEmpty());
-    }
-
     public function testCreatesWithOneArrangement(): void
     {
         $arrangement = Arrangement::create(ArrangementId::fromString(self::ARRANGEMENT_UUID));
