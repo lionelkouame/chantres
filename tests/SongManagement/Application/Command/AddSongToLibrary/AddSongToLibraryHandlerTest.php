@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase;
 
 final class AddSongToLibraryHandlerTest extends TestCase
 {
-    private const string SONG_UUID     = '550e8400-e29b-41d4-a716-446655440000';
+    private const string SONG_UUID = '550e8400-e29b-41d4-a716-446655440000';
     private const string COMPOSER_UUID = '6ba7b810-9dad-11d1-80b4-00c04fd430c8';
     private const string LYRICIST_UUID = '6ba7b810-9dad-11d1-80b4-00c04fd430c9';
 
@@ -31,15 +31,15 @@ final class AddSongToLibraryHandlerTest extends TestCase
     protected function setUp(): void
     {
         $this->repository = $this->createMock(SongRepositoryInterface::class);
-        $this->eventBus   = $this->createMock(DomainEventBusInterface::class);
-        $this->handler    = new AddSongToLibraryHandler($this->repository, $this->eventBus);
+        $this->eventBus = $this->createMock(DomainEventBusInterface::class);
+        $this->handler = new AddSongToLibraryHandler($this->repository, $this->eventBus);
     }
 
     private function validCommand(): AddSongToLibraryCommand
     {
         return new AddSongToLibraryCommand(
-            songId:     self::SONG_UUID,
-            title:      'Amazing Grace',
+            songId: self::SONG_UUID,
+            title: 'Amazing Grace',
             composerId: self::COMPOSER_UUID,
             lyricistId: self::LYRICIST_UUID,
         );
@@ -100,8 +100,8 @@ final class AddSongToLibraryHandlerTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
 
         ($this->handler)(new AddSongToLibraryCommand(
-            songId:     'not-a-uuid',
-            title:      'Amazing Grace',
+            songId: 'not-a-uuid',
+            title: 'Amazing Grace',
             composerId: self::COMPOSER_UUID,
             lyricistId: self::LYRICIST_UUID,
         ));
@@ -114,8 +114,8 @@ final class AddSongToLibraryHandlerTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
 
         ($this->handler)(new AddSongToLibraryCommand(
-            songId:     self::SONG_UUID,
-            title:      '',
+            songId: self::SONG_UUID,
+            title: '',
             composerId: self::COMPOSER_UUID,
             lyricistId: self::LYRICIST_UUID,
         ));

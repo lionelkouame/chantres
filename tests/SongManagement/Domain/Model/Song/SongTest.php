@@ -31,7 +31,6 @@ final class SongTest extends TestCase
         );
     }
 
-
     public function testCreatesWithOneArrangement(): void
     {
         $arrangement = Arrangement::create(ArrangementId::fromString(self::ARRANGEMENT_UUID));
