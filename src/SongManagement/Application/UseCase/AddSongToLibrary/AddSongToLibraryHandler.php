@@ -7,7 +7,6 @@ namespace App\SongManagement\Application\UseCase\AddSongToLibrary;
 use App\Shared\Domain\Port\DomainEventBusInterface;
 use App\SongManagement\Domain\Event\SongAddedToLibrary;
 use App\SongManagement\Domain\Exception\SongAlreadyExistsException;
-use App\SongManagement\Domain\Model\Arrangement\ArrangementCollection;
 use App\SongManagement\Domain\Model\Contributor\ContributorId;
 use App\SongManagement\Domain\Model\Contributor\ContributorIdCollection;
 use App\SongManagement\Domain\Model\Song\Song;
@@ -38,7 +37,7 @@ final readonly class AddSongToLibraryHandler
     {
         $songId = SongId::fromString($command->songId);
 
-        if ($this->songRepository->findById($songId) instanceof \App\SongManagement\Domain\Model\Song\Song) {
+        if ($this->songRepository->findById($songId) instanceof Song) {
             throw SongAlreadyExistsException::withId($songId);
         }
 
@@ -50,7 +49,6 @@ final readonly class AddSongToLibraryHandler
             new Title($command->title),
             $composerId,
             $lyricistId,
-            new ArrangementCollection(),
         );
 
         $this->songRepository->save($song);

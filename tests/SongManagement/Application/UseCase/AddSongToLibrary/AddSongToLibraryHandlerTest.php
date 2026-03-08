@@ -10,7 +10,6 @@ use App\SongManagement\Application\UseCase\AddSongToLibrary\AddSongToLibraryComm
 use App\SongManagement\Application\UseCase\AddSongToLibrary\AddSongToLibraryHandler;
 use App\SongManagement\Domain\Event\SongAddedToLibrary;
 use App\SongManagement\Domain\Exception\SongAlreadyExistsException;
-use App\SongManagement\Domain\Model\Arrangement\ArrangementCollection;
 use App\SongManagement\Domain\Model\Contributor\ContributorId;
 use App\SongManagement\Domain\Model\Song\Song;
 use App\SongManagement\Domain\Model\Song\SongId;
@@ -57,7 +56,6 @@ final class AddSongToLibraryHandlerTest extends TestCase
                 && 'Amazing Grace' === $song->title()->value()
                 && self::COMPOSER_UUID === $song->composerId()->value()
                 && self::LYRICIST_UUID === $song->lyricistId()->value()
-                && $song->arrangements()->isEmpty()
             ));
 
         ($this->handler)($this->validCommand());
@@ -86,7 +84,6 @@ final class AddSongToLibraryHandlerTest extends TestCase
             new Title('Already there'),
             ContributorId::fromString(self::COMPOSER_UUID),
             ContributorId::fromString(self::LYRICIST_UUID),
-            new ArrangementCollection(),
         );
         $this->repository->method('findById')->willReturn($existingSong);
 
