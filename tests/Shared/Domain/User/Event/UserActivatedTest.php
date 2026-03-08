@@ -15,7 +15,7 @@ final class UserActivatedTest extends TestCase
     public function testCarriesUserIdAndNullReasonByDefault(): void
     {
         $userId = UserId::fromString(self::USER_UUID);
-        $event  = new UserActivated($userId);
+        $event = new UserActivated($userId);
 
         self::assertSame($userId, $event->userId());
         self::assertNull($event->reason());

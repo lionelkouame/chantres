@@ -17,8 +17,8 @@ final class UserRegisteredTest extends TestCase
     public function testCarriesExpectedPayload(): void
     {
         $userId = UserId::fromString(self::USER_UUID);
-        $email  = new Email('jean.dupont@chorale.fr');
-        $name   = new Name('Jean Dupont');
+        $email = new Email('jean.dupont@chorale.fr');
+        $name = new Name('Jean Dupont');
 
         $event = new UserRegistered($userId, $email, $name);
 
@@ -31,7 +31,7 @@ final class UserRegisteredTest extends TestCase
     public function testOccurredOnDefaultsToNow(): void
     {
         $before = new \DateTimeImmutable();
-        $event  = new UserRegistered(
+        $event = new UserRegistered(
             UserId::fromString(self::USER_UUID),
             new Email('jean.dupont@chorale.fr'),
             new Name('Jean Dupont'),
@@ -45,7 +45,7 @@ final class UserRegisteredTest extends TestCase
     public function testAcceptsExplicitOccurredOn(): void
     {
         $occurredOn = new \DateTimeImmutable('2026-01-15 10:00:00');
-        $event      = new UserRegistered(
+        $event = new UserRegistered(
             UserId::fromString(self::USER_UUID),
             new Email('marie@chorale.fr'),
             new Name('Marie Curie'),

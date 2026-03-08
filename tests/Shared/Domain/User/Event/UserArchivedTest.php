@@ -15,7 +15,7 @@ final class UserArchivedTest extends TestCase
     public function testCarriesUserId(): void
     {
         $userId = UserId::fromString(self::USER_UUID);
-        $event  = new UserArchived($userId);
+        $event = new UserArchived($userId);
 
         self::assertSame($userId, $event->userId());
         self::assertInstanceOf(\DateTimeImmutable::class, $event->occurredOn());
@@ -24,7 +24,7 @@ final class UserArchivedTest extends TestCase
     public function testAcceptsExplicitOccurredOn(): void
     {
         $occurredOn = new \DateTimeImmutable('2026-03-01 00:00:00');
-        $event      = new UserArchived(UserId::fromString(self::USER_UUID), $occurredOn);
+        $event = new UserArchived(UserId::fromString(self::USER_UUID), $occurredOn);
 
         self::assertSame($occurredOn, $event->occurredOn());
     }
