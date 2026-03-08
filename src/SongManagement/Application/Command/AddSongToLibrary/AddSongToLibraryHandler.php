@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\SongManagement\Application\UseCase\AddSongToLibrary;
+namespace App\SongManagement\Application\Command\AddSongToLibrary;
 
+use App\Shared\Application\Command\CommandHandlerInterface;
 use App\Shared\Domain\Port\DomainEventBusInterface;
 use App\SongManagement\Domain\Event\SongAddedToLibrary;
 use App\SongManagement\Domain\Exception\SongAlreadyExistsException;
@@ -25,7 +26,7 @@ use App\SongManagement\Domain\Port\SongRepositoryInterface;
  *
  * @author Lionel KOUAME
  */
-final readonly class AddSongToLibraryHandler
+final readonly class AddSongToLibraryHandler implements CommandHandlerInterface
 {
     public function __construct(
         private SongRepositoryInterface $songRepository,
@@ -37,7 +38,7 @@ final readonly class AddSongToLibraryHandler
     {
         $songId = SongId::fromString($command->songId);
 
-        if ($this->songRepository->findById($songId) instanceof Song) {
+        if (null !== $this->songRepository->findById($songId)) {
             throw SongAlreadyExistsException::withId($songId);
         }
 

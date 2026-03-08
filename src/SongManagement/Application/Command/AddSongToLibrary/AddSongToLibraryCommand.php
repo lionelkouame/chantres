@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\SongManagement\Application\UseCase\AddSongToLibrary;
+namespace App\SongManagement\Application\Command\AddSongToLibrary;
+
+use App\Shared\Application\Command\CommandInterface;
 
 /**
  * Command for adding a new Song to the library.
@@ -13,7 +15,7 @@ namespace App\SongManagement\Application\UseCase\AddSongToLibrary;
  *
  * @author Lionel KOUAME
  */
-final readonly class AddSongToLibraryCommand
+final readonly class AddSongToLibraryCommand implements CommandInterface
 {
     public function __construct(
         public string $songId,
