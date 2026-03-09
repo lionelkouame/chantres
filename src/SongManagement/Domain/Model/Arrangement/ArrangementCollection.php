@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\SongManagement\Domain\Model\Arrangement;
 
 /**
- * Typed collection of Arrangement entities.
+ * Typed collection of Arrangement value objects.
  *
  * @author Lionel KOUAME
  */
