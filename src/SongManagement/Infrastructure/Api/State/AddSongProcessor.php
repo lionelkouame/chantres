@@ -7,7 +7,7 @@ namespace App\SongManagement\Infrastructure\Api\State;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
 use App\SongManagement\Application\Command\AddSongToLibrary\AddSongToLibraryCommand;
-use App\SongManagement\Application\Command\AddSongToLibrary\AddSongToLibraryHandler;
+use App\SongManagement\Application\Command\AddSongToLibrary\AddSongToLibraryHandlerInterface;
 use App\SongManagement\Infrastructure\Api\Resource\SongResource;
 
 /**
@@ -20,7 +20,7 @@ use App\SongManagement\Infrastructure\Api\Resource\SongResource;
 final readonly class AddSongProcessor implements ProcessorInterface
 {
     public function __construct(
-        private AddSongToLibraryHandler $handler,
+        private AddSongToLibraryHandlerInterface $handler,
     ) {
     }
 

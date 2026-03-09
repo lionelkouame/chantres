@@ -26,7 +26,7 @@ use App\SongManagement\Domain\Port\SongRepositoryInterface;
  *
  * @author Lionel KOUAME
  */
-readonly class AddSongToLibraryHandler implements CommandHandlerInterface
+readonly class AddSongToLibraryHandler implements CommandHandlerInterface, AddSongToLibraryHandlerInterface
 {
     public function __construct(
         private SongRepositoryInterface $songRepository,

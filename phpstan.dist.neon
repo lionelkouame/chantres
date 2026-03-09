@@ -1,5 +1,5 @@
 parameters:
-    level: 6
+    level: 10
     paths:
         - bin/
         - config/
@@ -8,6 +8,10 @@ parameters:
         - tests/
     excludePaths:
         - tests/bootstrap.php
+    ignoreErrors:
+        - # public/index.php — $context values are mixed by design in the Symfony runtime
+            message: '#Parameter \#1 \$environment of class App\\Kernel constructor expects string, mixed given\.#'
+            path: public/index.php
 includes:
   - vendor/phpstan/phpstan-symfony/extension.neon
 
