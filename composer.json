@@ -9,12 +9,15 @@
         "php": ">=8.3.19",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "api-platform/core": "^4.1",
         "runtime/frankenphp-symfony": "^0.2.0",
+        "symfony/asset": "7.2.*",
         "symfony/console": "7.2.*",
         "symfony/dotenv": "7.2.*",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "7.2.*",
         "symfony/runtime": "7.2.*",
+        "symfony/twig-bundle": "7.2.*",
         "symfony/yaml": "7.2.*"
     },
     "config": {
