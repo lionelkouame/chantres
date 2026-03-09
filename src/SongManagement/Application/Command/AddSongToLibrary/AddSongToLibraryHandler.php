@@ -29,8 +29,8 @@ use App\SongManagement\Domain\Port\SongRepositoryInterface;
 readonly class AddSongToLibraryHandler implements CommandHandlerInterface
 {
     public function __construct(
-        private  SongRepositoryInterface $songRepository,
-        private  DomainEventBusInterface $eventBus,
+        private SongRepositoryInterface $songRepository,
+        private DomainEventBusInterface $eventBus,
     ) {
     }
 
