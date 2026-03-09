@@ -11,9 +11,14 @@ namespace App\SongManagement\Domain\Model\Arrangement;
  */
 final readonly class Arrangement
 {
-    public function __construct(
+    private function __construct(
         private ArrangementId $arrangementId,
     ) {
+    }
+
+    public static function create(ArrangementId $id): self
+    {
+        return new self($id);
     }
 
     public function arrangementId(): ArrangementId
