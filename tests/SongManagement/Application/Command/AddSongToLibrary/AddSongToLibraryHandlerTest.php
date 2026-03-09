@@ -14,7 +14,7 @@ use App\SongManagement\Domain\Model\Contributor\ContributorId;
 use App\SongManagement\Domain\Model\Song\Song;
 use App\SongManagement\Domain\Model\Song\SongId;
 use App\SongManagement\Domain\Model\Song\Title;
-use App\SongManagement\Domain\Port\SongRepositoryInterface;
+use App\SongManagement\Domain\Port\SongCollection;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -24,13 +24,13 @@ final class AddSongToLibraryHandlerTest extends TestCase
     private const string COMPOSER_UUID = '6ba7b810-9dad-11d1-80b4-00c04fd430c8';
     private const string LYRICIST_UUID = '6ba7b810-9dad-11d1-80b4-00c04fd430c9';
 
-    private SongRepositoryInterface&MockObject $repository;
+    private SongCollection&MockObject $repository;
     private DomainEventBusInterface&MockObject $eventBus;
     private AddSongToLibraryHandler $handler;
 
     protected function setUp(): void
     {
-        $this->repository = $this->createMock(SongRepositoryInterface::class);
+        $this->repository = $this->createMock(SongCollection::class);
         $this->eventBus = $this->createMock(DomainEventBusInterface::class);
         $this->handler = new AddSongToLibraryHandler($this->repository, $this->eventBus);
     }
