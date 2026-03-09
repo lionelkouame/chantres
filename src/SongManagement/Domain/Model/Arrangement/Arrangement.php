@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace App\SongManagement\Domain\Model\Arrangement;
 
 /**
- * Arrangement Entity.
- *
  * Represents a musical arrangement of a Song.
  *
  * @author Lionel KOUAME
  */
-readonly class Arrangement
+final readonly class Arrangement
 {
     private function __construct(
         private ArrangementId $arrangementId,
