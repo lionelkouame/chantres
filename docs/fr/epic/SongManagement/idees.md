@@ -1,2 +1,2 @@
 - peut avoir besoin  d'un shrared VO natural person.
-- 
+-
