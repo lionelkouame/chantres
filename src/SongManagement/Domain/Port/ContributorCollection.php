@@ -14,7 +14,7 @@ use App\SongManagement\Domain\Model\Contributor\ContributorId;
  *
  * @author Lionel KOUAME
  */
-interface ContributorRepositoryInterface
+interface ContributorCollection
 {
     public function save(Contributor $contributor): void;
 
