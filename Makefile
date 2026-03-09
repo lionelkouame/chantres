@@ -2,7 +2,7 @@
 DOCKER_COMPOSE = docker compose
 PHP_CONT = $(DOCKER_COMPOSE) exec -T php
 
-.PHONY: help build up down ssh audit phpstan rector rector-dry cs-fix cs-fix-dry phpunit coverage test-ci
+.PHONY: help build up down ssh audit phpstan rector rector-dry cs-fix cs-fix-dry phpunit coverage infection test-ci
 
 help: ## Affiche cette aide
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
@@ -47,6 +47,10 @@ phpunit: ## Lance les tests unitaires
 coverage: ## Lance les tests avec rapport de couverture (HTML dans var/coverage + résumé terminal)
 	$(DOCKER_COMPOSE) exec -T -e XDEBUG_MODE=coverage php vendor/bin/phpunit --coverage-text --coverage-html var/coverage
 	@echo "\033[36m📊 Rapport HTML disponible dans var/coverage/index.html\033[0m"
+
+infection: ## Lance les tests de mutation avec Infection (rapport dans var/infection/)
+	$(DOCKER_COMPOSE) exec -T -e XDEBUG_MODE=coverage php vendor/bin/infection --show-mutations --threads=4
+	@echo "\033[36m🧬 Rapport HTML disponible dans var/infection/infection.html\033[0m"
 
 audit: cs-fix phpstan phpunit rector ## Lance l'audit complet local (avec corrections auto)
 
