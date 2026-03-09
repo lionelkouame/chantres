@@ -54,3 +54,4 @@ prompts/
 ###> phpstan/phpstan ###
 phpstan.neon
 ###< phpstan/phpstan ###
+var/infection/
