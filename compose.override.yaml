@@ -33,5 +33,19 @@ services:
       - "5432"
 ###< doctrine/doctrine-bundle ###
 
+###> opensearch ###
+  opensearch:
+    ports:
+      - target: 9200
+        published: ${OPENSEARCH_PORT:-9200}
+        protocol: tcp
+
+  opensearch-dashboards:
+    ports:
+      - target: 5601
+        published: ${OPENSEARCH_DASHBOARDS_PORT:-5601}
+        protocol: tcp
+###< opensearch ###
+
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-
