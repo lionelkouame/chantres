@@ -14,7 +14,7 @@ use App\SongManagement\Domain\Model\Song\SongId;
  *
  * @author Lionel KOUAME
  */
-interface SongRepositoryInterface
+interface SongCollection
 {
     public function save(Song $song): void;
 

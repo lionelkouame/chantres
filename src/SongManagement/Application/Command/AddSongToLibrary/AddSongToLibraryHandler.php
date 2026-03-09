@@ -13,7 +13,7 @@ use App\SongManagement\Domain\Model\Contributor\ContributorIdCollection;
 use App\SongManagement\Domain\Model\Song\Song;
 use App\SongManagement\Domain\Model\Song\SongId;
 use App\SongManagement\Domain\Model\Song\Title;
-use App\SongManagement\Domain\Port\SongRepositoryInterface;
+use App\SongManagement\Domain\Port\SongCollection;
 
 /**
  * Handles the AddSongToLibraryCommand use case.
@@ -29,7 +29,7 @@ use App\SongManagement\Domain\Port\SongRepositoryInterface;
 readonly class AddSongToLibraryHandler implements CommandHandlerInterface, AddSongToLibraryHandlerInterface
 {
     public function __construct(
-        private SongRepositoryInterface $songRepository,
+        private SongCollection $songRepository,
         private DomainEventBusInterface $eventBus,
     ) {
     }

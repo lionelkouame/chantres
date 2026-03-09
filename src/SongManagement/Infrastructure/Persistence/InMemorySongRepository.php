@@ -6,7 +6,7 @@ namespace App\SongManagement\Infrastructure\Persistence;
 
 use App\SongManagement\Domain\Model\Song\Song;
 use App\SongManagement\Domain\Model\Song\SongId;
-use App\SongManagement\Domain\Port\SongRepositoryInterface;
+use App\SongManagement\Domain\Port\SongCollection;
 
 /**
  * In-memory Song repository – development/test stub.
@@ -15,7 +15,7 @@ use App\SongManagement\Domain\Port\SongRepositoryInterface;
  *
  * @author Lionel KOUAME
  */
-final class InMemorySongRepository implements SongRepositoryInterface
+final class InMemorySongRepository implements SongCollection
 {
     /** @var array<string, Song> */
     private array $store = [];
