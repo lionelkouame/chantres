@@ -6,6 +6,7 @@ namespace App\SongManagement\Infrastructure\Api\State;
 
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
+use App\Shared\Domain\Port\UuidGeneratorInterface;
 use App\SongManagement\Application\Command\AddSongToLibrary\AddSongToLibraryCommand;
 use App\SongManagement\Application\Command\AddSongToLibrary\AddSongToLibraryHandlerInterface;
 use App\SongManagement\Infrastructure\Api\Resource\SongResource;
@@ -21,11 +22,14 @@ final readonly class AddSongProcessor implements ProcessorInterface
 {
     public function __construct(
         private AddSongToLibraryHandlerInterface $handler,
+        private UuidGeneratorInterface $uuidGenerator,
     ) {
     }
 
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): SongResource
     {
+        $data->songId = $this->uuidGenerator->generate();
+
         ($this->handler)(new AddSongToLibraryCommand(
             songId: $data->songId,
             title: $data->title,

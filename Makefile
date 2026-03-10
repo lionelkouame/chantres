@@ -2,7 +2,7 @@
 DOCKER_COMPOSE = docker compose
 PHP_CONT = $(DOCKER_COMPOSE) exec -T php
 
-.PHONY: help build up down ssh audit phpstan rector rector-dry cs-fix cs-fix-dry phpunit coverage infection test-ci
+.PHONY: help build up down restart-workers ssh audit phpstan rector rector-dry cs-fix cs-fix-dry phpunit coverage infection test-ci
 
 help: ## Affiche cette aide
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
@@ -23,6 +23,9 @@ ps: ## Affiche les conteneurs en cours avec leur taille
 
 ssh: ## Entre dans le conteneur PHP
 	$(DOCKER_COMPOSE) exec php bash
+
+restart-workers: ## Redémarre les workers FrankenPHP (vide l'état in-memory)
+	$(DOCKER_COMPOSE) restart php
 
 ## --- QUALITÉ & TESTS ---
 

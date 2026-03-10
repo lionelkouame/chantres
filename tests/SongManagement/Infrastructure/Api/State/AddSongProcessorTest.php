@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\SongManagement\Infrastructure\Api\State;
 
 use ApiPlatform\Metadata\Post;
+use App\Shared\Domain\Port\UuidGeneratorInterface;
 use App\SongManagement\Application\Command\AddSongToLibrary\AddSongToLibraryHandlerInterface;
 use App\SongManagement\Domain\Exception\SongAlreadyExistsException;
 use App\SongManagement\Domain\Model\Song\SongId;
@@ -20,23 +21,37 @@ final class AddSongProcessorTest extends TestCase
     private const string LYRICIST_UUID = '6ba7b810-9dad-11d1-80b4-00c04fd430c9';
 
     private AddSongToLibraryHandlerInterface&MockObject $handler;
+    private UuidGeneratorInterface&MockObject $uuidGenerator;
     private AddSongProcessor $processor;
 
     protected function setUp(): void
     {
         $this->handler = $this->createMock(AddSongToLibraryHandlerInterface::class);
-        $this->processor = new AddSongProcessor($this->handler);
+        $this->uuidGenerator = $this->createMock(UuidGeneratorInterface::class);
+        $this->uuidGenerator->method('generate')->willReturn(self::SONG_UUID);
+        $this->processor = new AddSongProcessor($this->handler, $this->uuidGenerator);
     }
 
     private function resource(): SongResource
     {
         $resource = new SongResource();
-        $resource->songId = self::SONG_UUID;
         $resource->title = 'Amazing Grace';
         $resource->composerId = self::COMPOSER_UUID;
         $resource->lyricistId = self::LYRICIST_UUID;
 
         return $resource;
+    }
+
+    public function testItGeneratesSongIdAndInvokesHandler(): void
+    {
+        $this->handler->expects(self::once())->method('__invoke');
+
+        $resource = $this->resource();
+        self::assertSame('', $resource->songId);
+
+        $result = $this->processor->process($resource, new Post());
+
+        self::assertSame(self::SONG_UUID, $result->songId);
     }
 
     public function testItInvokesHandlerAndReturnsResource(): void
