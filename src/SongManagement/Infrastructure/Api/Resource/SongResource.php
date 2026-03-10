@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\SongManagement\Infrastructure\Api\Resource;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Post;
 use App\SongManagement\Domain\Exception\SongAlreadyExistsException;
@@ -32,6 +33,7 @@ use Symfony\Component\HttpFoundation\Response;
 final class SongResource
 {
     public function __construct(
+        #[ApiProperty(writable: false)]
         public string $songId = '',
         public string $title = '',
         public string $composerId = '',
