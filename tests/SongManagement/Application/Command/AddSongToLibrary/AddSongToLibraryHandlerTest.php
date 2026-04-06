@@ -9,12 +9,18 @@ use App\Shared\Domain\Port\DomainEventBusInterface;
 use App\SongManagement\Application\Command\AddSongToLibrary\AddSongToLibraryCommand;
 use App\SongManagement\Application\Command\AddSongToLibrary\AddSongToLibraryHandler;
 use App\SongManagement\Domain\Event\SongAddedToLibrary;
+use App\SongManagement\Domain\Exception\ContributorNotFoundException;
 use App\SongManagement\Domain\Exception\SongAlreadyExistsException;
+use App\SongManagement\Domain\Model\Contributor\Contributor;
 use App\SongManagement\Domain\Model\Contributor\ContributorId;
 use App\SongManagement\Domain\Model\Song\Song;
 use App\SongManagement\Domain\Model\Song\SongId;
 use App\SongManagement\Domain\Model\Song\Title;
+use App\SongManagement\Domain\Port\ContributorCollection;
 use App\SongManagement\Domain\Port\SongCollection;
+use App\Shared\Domain\FullName;
+use App\Shared\Domain\FirstName;
+use App\Shared\Domain\LastName;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -25,14 +31,20 @@ final class AddSongToLibraryHandlerTest extends TestCase
     private const string LYRICIST_UUID = '6ba7b810-9dad-11d1-80b4-00c04fd430c9';
 
     private SongCollection&MockObject $repository;
+    private ContributorCollection&MockObject $contributorRepository;
     private DomainEventBusInterface&MockObject $eventBus;
     private AddSongToLibraryHandler $handler;
 
     protected function setUp(): void
     {
         $this->repository = $this->createMock(SongCollection::class);
+        $this->contributorRepository = $this->createMock(ContributorCollection::class);
         $this->eventBus = $this->createMock(DomainEventBusInterface::class);
-        $this->handler = new AddSongToLibraryHandler($this->repository, $this->eventBus);
+        $this->handler = new AddSongToLibraryHandler(
+            $this->repository,
+            $this->contributorRepository,
+            $this->eventBus,
+        );
     }
 
     private function validCommand(): AddSongToLibraryCommand
@@ -45,9 +57,29 @@ final class AddSongToLibraryHandlerTest extends TestCase
         );
     }
 
+    private function makeContributor(string $uuid): Contributor
+    {
+        return Contributor::register(
+            ContributorId::fromString($uuid),
+            new FullName(new FirstName('Jean'), new LastName('Dupont')),
+        );
+    }
+
+    private function withContributorsFound(): void
+    {
+        $this->contributorRepository
+            ->method('findById')
+            ->willReturnCallback(fn (ContributorId $id): ?Contributor => match ($id->value()) {
+                self::COMPOSER_UUID => $this->makeContributor(self::COMPOSER_UUID),
+                self::LYRICIST_UUID => $this->makeContributor(self::LYRICIST_UUID),
+                default => null,
+            });
+    }
+
     public function testPersistsTheSong(): void
     {
         $this->repository->method('findById')->willReturn(null);
+        $this->withContributorsFound();
 
         $this->repository
             ->expects(self::once())
@@ -65,6 +97,7 @@ final class AddSongToLibraryHandlerTest extends TestCase
     {
         $this->repository->method('findById')->willReturn(null);
         $this->repository->method('save');
+        $this->withContributorsFound();
 
         $this->eventBus
             ->expects(self::once())
@@ -95,6 +128,37 @@ final class AddSongToLibraryHandlerTest extends TestCase
         ($this->handler)($this->validCommand());
     }
 
+    public function testThrowsWhenComposerNotFound(): void
+    {
+        $this->repository->method('findById')->willReturn(null);
+        $this->contributorRepository->method('findById')->willReturn(null);
+
+        $this->repository->expects(self::never())->method('save');
+        $this->eventBus->expects(self::never())->method('dispatch');
+
+        $this->expectException(ContributorNotFoundException::class);
+
+        ($this->handler)($this->validCommand());
+    }
+
+    public function testThrowsWhenLyricistNotFound(): void
+    {
+        $this->repository->method('findById')->willReturn(null);
+        $this->contributorRepository
+            ->method('findById')
+            ->willReturnCallback(fn (ContributorId $id): ?Contributor => self::COMPOSER_UUID === $id->value()
+                ? $this->makeContributor(self::COMPOSER_UUID)
+                : null
+            );
+
+        $this->repository->expects(self::never())->method('save');
+        $this->eventBus->expects(self::never())->method('dispatch');
+
+        $this->expectException(ContributorNotFoundException::class);
+
+        ($this->handler)($this->validCommand());
+    }
+
     public function testThrowsOnInvalidSongId(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -110,6 +174,7 @@ final class AddSongToLibraryHandlerTest extends TestCase
     public function testThrowsOnEmptyTitle(): void
     {
         $this->repository->method('findById')->willReturn(null);
+        $this->withContributorsFound();
 
         $this->expectException(\InvalidArgumentException::class);
 
